@@ -1,8 +1,8 @@
-import Network
-import Foundation
 import os.log
-import Asynchrone
+import Network
 import Semaphore
+import Foundation
+import Asynchrone
 
 public protocol CommandRequest: Codable {
     associatedtype Response: CommandResponse
@@ -26,22 +26,22 @@ public struct CommandError: Error, Codable {
     public let message: String
 }
 
-struct CommandData: Codable {
-    let identifier: String
+public struct CommandData: Codable {
+    public let identifier: String
 
-    let data: Data
+    public let data: Data
 
-    init(identifier: String, data: Data) {
+    public init(identifier: String, data: Data) {
         self.identifier = identifier
         self.data = data
     }
 
-    init<Value: Codable>(identifier: String, value: Value) throws {
+    public init<Value: Codable>(identifier: String, value: Value) throws {
         self.identifier = identifier
         self.data = try JSONEncoder().encode(value)
     }
 
-    init<Request: CommandRequest>(request: Request) throws {
+    public init<Request: CommandRequest>(request: Request) throws {
         self.identifier = Request.identifier
         self.data = try JSONEncoder().encode(request)
     }
@@ -53,32 +53,32 @@ public enum ConnectionError: Error {
     case receiveFailed
 }
 
-final class Connection {
-    private class MessageHandler {
-        typealias RawHandler = (Data) async throws -> Data
-        let closure: RawHandler
-        let requestType: Codable.Type
-        let responseType: Codable.Type
+package final class CommandHandler {
+    typealias RawHandler = (Data) async throws -> Data
+    let closure: RawHandler
+    let requestType: Codable.Type
+    let responseType: Codable.Type
 
-        init<Request: Codable, Response: Codable>(closure: @escaping (Request) async throws -> Response) {
-            self.requestType = Request.self
-            self.responseType = Response.self
+    init<Request: Codable, Response: Codable>(closure: @escaping (Request) async throws -> Response) {
+        self.requestType = Request.self
+        self.responseType = Response.self
 
-            self.closure = { request in
-                let request = try JSONDecoder().decode(Request.self, from: request)
-                let response = try await closure(request)
-                return try JSONEncoder().encode(response)
-            }
+        self.closure = { request in
+            let request = try JSONDecoder().decode(Request.self, from: request)
+            let response = try await closure(request)
+            return try JSONEncoder().encode(response)
         }
     }
+}
 
+public final class CommandConnection {
     private typealias ReceiveType = (Data?, NWConnection.ContentContext?, Bool, NWError?) -> Void
 
     public let id = UUID()
 
-    public var didStop: ((Connection) -> Void)?
+    public var didStop: ((CommandConnection) -> Void)?
 
-    public var didReady: ((Connection) -> Void)?
+    public var didReady: ((CommandConnection) -> Void)?
 
     private let connection: NWConnection
 
@@ -86,7 +86,7 @@ final class Connection {
 
     private static let endMarkerData = "\nOK".data(using: .utf8)!
 
-    private var logger: Logger { Connection.logger }
+    private var logger: Logger { CommandConnection.logger }
 
     private let queue = DispatchQueue(label: "com.JH.HopperMCP.Connection.queue")
 
@@ -104,11 +104,11 @@ final class Connection {
 
     private let semaphore = AsyncSemaphore(value: 1)
 
-    private var messageHandlers: [String: MessageHandler] = [:]
+    package var commandHandlers: [String: CommandHandler] = [:]
 
     /// outgoing connection
     public init(endpoint: NWEndpoint) throws {
-        Connection.logger.info("Connection outgoing endpoint: \(endpoint.debugDescription)")
+        CommandConnection.logger.info("Connection outgoing endpoint: \(endpoint.debugDescription)")
         let tcpOptions = NWProtocolTCP.Options()
         tcpOptions.enableKeepalive = true
         tcpOptions.keepaliveIdle = 2
@@ -121,7 +121,7 @@ final class Connection {
 
     /// incoming connection
     public init(connection: NWConnection) throws {
-        Connection.logger.info("Connection incoming connection: \(connection.debugDescription)")
+        CommandConnection.logger.info("Connection incoming connection: \(connection.debugDescription)")
         self.connection = connection
         try start()
     }
@@ -129,34 +129,34 @@ final class Connection {
     public func start() throws {
         guard !isStarted else { return }
         isStarted = true
-        Connection.logger.info("Connection will start")
+        CommandConnection.logger.info("Connection will start")
         setupStreams()
         setupStateUpdateHandler()
         setupReceiver()
         observeIncomingMessages()
         connection.start(queue: queue)
-        Connection.logger.info("Connection did start")
+        CommandConnection.logger.info("Connection did start")
     }
 
     public func stop() {
         guard isStarted else { return }
         isStarted = false
-        Connection.logger.info("Connection will stop")
+        CommandConnection.logger.info("Connection will stop")
         connection.stateUpdateHandler = nil
         connection.cancel()
         connectionStateContinuation?.finish()
         receivedDataContinuation?.finish()
         didStop?(self)
         didStop = nil
-        Connection.logger.info("Connection did stop")
+        CommandConnection.logger.info("Connection did stop")
     }
 
-    public func setMessageHandler<Request: Codable, Response: Codable>(name: String, handler: @escaping ((Request) async throws -> Response)) {
-        messageHandlers[name] = .init(closure: handler)
+    public func setCommandHandler<Request: Codable, Response: Codable>(name: String, handler: @escaping ((Request) async throws -> Response)) {
+        commandHandlers[name] = .init(closure: handler)
     }
 
-    public func setMessageHandler<Request: CommandRequest>(_ handler: @escaping ((Request) async throws -> Request.Response)) {
-        messageHandlers[Request.identifier] = .init(closure: handler)
+    public func setCommandHandler<Request: CommandRequest>(_ handler: @escaping ((Request) async throws -> Request.Response)) {
+        commandHandlers[Request.identifier] = .init(closure: handler)
     }
 
     public func send(requestData: CommandData) async throws {
@@ -195,7 +195,7 @@ final class Connection {
                 for try await data in receivedDataStream {
                     do {
                         let requestData = try JSONDecoder().decode(CommandData.self, from: data)
-                        guard let messageHandler = messageHandlers[requestData.identifier] else { continue }
+                        guard let messageHandler = commandHandlers[requestData.identifier] else { continue }
                         logger.info("Connection received identifier: \(requestData.identifier)")
                         logger.info("Connection received data: \(data)")
                         let responseData = try await messageHandler.closure(requestData.data)
@@ -311,12 +311,12 @@ final class Connection {
                 return
             }
 
-            connection.send(content: data + Connection.endMarkerData, completion: .contentProcessed { error in
+            connection.send(content: data + CommandConnection.endMarkerData, completion: .contentProcessed { error in
                 if let error = error {
                     continuation.resume(throwing: error)
                     return
                 }
-                Connection.logger.info("Connection send data: \(data)")
+                CommandConnection.logger.info("Connection send data: \(data)")
                 continuation.resume()
             })
         }
@@ -336,5 +336,48 @@ final class Connection {
         }
 
         throw ConnectionError.receiveFailed
+    }
+}
+
+public actor CommandListener {
+    private let listener: NWListener
+
+    private var connections: [UUID: CommandConnection] = [:]
+
+    private var commandHandlers: [String: CommandHandler] = [:]
+
+    public func setCommandHandler<Request: Codable, Response: Codable>(name: String, handler: @escaping ((Request) async throws -> Response)) {
+        commandHandlers[name] = .init(closure: handler)
+    }
+
+    public func setCommandHandler<Request: CommandRequest>(_ handler: @escaping ((Request) async throws -> Request.Response)) {
+        commandHandlers[Request.identifier] = .init(closure: handler)
+    }
+
+    public init() {
+        self.listener = try! NWListener(using: .tcp, on: 5001)
+    }
+
+    public func start() {
+        listener.newConnectionHandler = { [weak self] connection in
+            guard let self else { return }
+            Task {
+                await self.handleNewConnection(connection)
+            }
+        }
+        listener.start(queue: .global())
+    }
+
+    public func stop() {
+        listener.newConnectionHandler = nil
+        listener.cancel()
+    }
+
+    private func handleNewConnection(_ nwConnection: NWConnection) {
+        do {
+            let connection = try CommandConnection(connection: nwConnection)
+            connection.commandHandlers = commandHandlers
+            connections[UUID()] = connection
+        } catch {}
     }
 }

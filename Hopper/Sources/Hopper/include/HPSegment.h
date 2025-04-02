@@ -15,6 +15,7 @@
 @protocol HPSection;
 @protocol HPProcedure;
 @protocol HPASMLine;
+@protocol HPDisassembledFile;
 
 @protocol HPSegment <NSObject>
 
@@ -67,6 +68,7 @@
 
 
 #pragma mark - Private methods
+@property (nonatomic, weak, nullable) id<HPDisassembledFile> file;
 
 - (nullable NSArray<id<HPASMLine>> *)stringsForVirtualAddress:(Address)address includingDecorations:(BOOL)includingDecorations inlineComments:(BOOL)inlineComments addressField:(BOOL)addressField hexColumn:(BOOL)hexColumn compactMode:(BOOL)compactMode;
 - (NSUInteger)getByteLengthAtVirtualAddress:(Address)address;
