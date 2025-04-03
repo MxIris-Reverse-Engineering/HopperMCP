@@ -10,13 +10,44 @@
 		E9530A242D9C3452008FBC7F /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A232D9C3452008FBC7F /* MCP */; };
 		E9530A752D9D7545008FBC7F /* ServiceLifecycle in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A742D9D7545008FBC7F /* ServiceLifecycle */; };
 		E9530A9C2D9D944C008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A9B2D9D944C008FBC7F /* Hopper */; };
-		E9530AE92D9D9900008FBC7F /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = E9530AE82D9D9900008FBC7F /* MCP */; };
 		E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B0B2D9D9B8F008FBC7F /* Hopper */; };
-		E9530B0E2D9D9DA5008FBC7F /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B0D2D9D9DA5008FBC7F /* MCP */; };
+		E9D78E6B2D9E75B10001AA66 /* HopperInjectionService in Frameworks */ = {isa = PBXBuildFile; productRef = E9D78E6A2D9E75B10001AA66 /* HopperInjectionService */; };
+		E9D78E7E2D9E7EE20001AA66 /* HopperInjectionService in Frameworks */ = {isa = PBXBuildFile; productRef = E9D78E7D2D9E7EE20001AA66 /* HopperInjectionService */; };
+		E9FAA5DA2D9E665000E9AC9D /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = E9FAA5D92D9E665000E9AC9D /* MCP */; };
+		E9FAA6272D9E730800E9AC9D /* SwiftyXPC in Frameworks */ = {isa = PBXBuildFile; productRef = E9FAA6262D9E730800E9AC9D /* SwiftyXPC */; };
+		E9FAA6292D9E735B00E9AC9D /* HopperMCP in Resources */ = {isa = PBXBuildFile; fileRef = E9FAA6282D9E735B00E9AC9D /* HopperMCP */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E9FAA5DD2D9E665400E9AC9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E985A9DC2D9C04E5005A573C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9530AE02D9D98F7008FBC7F;
+			remoteInfo = HopperMCPCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E9530A192D9C3440008FBC7F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		E9D78E6E2D9E77820001AA66 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		E9FAA6152D9E723F00E9AC9D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -31,6 +62,10 @@
 		E9530A0E2D9C3393008FBC7F /* HopperMCPPlugin.hopperTool */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HopperMCPPlugin.hopperTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9530A1B2D9C3440008FBC7F /* HopperMCPServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HopperMCPServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HopperMCPCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D78E702D9E77820001AA66 /* hopperinjectd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hopperinjectd; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopperMCPApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FAA6172D9E723F00E9AC9D /* hoppermcpd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hoppermcpd; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FAA6282D9E735B00E9AC9D /* HopperMCP */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HopperMCP; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -62,6 +97,21 @@
 			path = HopperMCPCore;
 			sourceTree = "<group>";
 		};
+		E9D78E712D9E77820001AA66 /* hopperinjectd */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = hopperinjectd;
+			sourceTree = "<group>";
+		};
+		E9FAA6052D9E721000E9AC9D /* HopperMCPApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HopperMCPApp;
+			sourceTree = "<group>";
+		};
+		E9FAA6182D9E723F00E9AC9D /* hoppermcpd */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = hoppermcpd;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9530A9C2D9D944C008FBC7F /* Hopper in Frameworks */,
-				E9530B0E2D9D9DA5008FBC7F /* MCP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +137,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */,
-				E9530AE92D9D9900008FBC7F /* MCP in Frameworks */,
+				E9FAA5DA2D9E665000E9AC9D /* MCP in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9D78E6D2D9E77820001AA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9D78E7E2D9E7EE20001AA66 /* HopperInjectionService in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9FAA6012D9E721000E9AC9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9FAA6272D9E730800E9AC9D /* SwiftyXPC in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9FAA6142D9E723F00E9AC9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9D78E6B2D9E75B10001AA66 /* HopperInjectionService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,9 +178,13 @@
 		E985A9DB2D9C04E5005A573C = {
 			isa = PBXGroup;
 			children = (
+				E9FAA6282D9E735B00E9AC9D /* HopperMCP */,
+				E9FAA6052D9E721000E9AC9D /* HopperMCPApp */,
 				E9530A1C2D9C3440008FBC7F /* HopperMCPServer */,
 				E9530A162D9C3412008FBC7F /* HopperMCPPlugin */,
 				E9530AE22D9D98F7008FBC7F /* HopperMCPCore */,
+				E9FAA6182D9E723F00E9AC9D /* hoppermcpd */,
+				E9D78E712D9E77820001AA66 /* hopperinjectd */,
 				E9530A222D9C3452008FBC7F /* Frameworks */,
 				E985A9E52D9C04E5005A573C /* Products */,
 			);
@@ -119,6 +196,9 @@
 				E9530A0E2D9C3393008FBC7F /* HopperMCPPlugin.hopperTool */,
 				E9530A1B2D9C3440008FBC7F /* HopperMCPServer */,
 				E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */,
+				E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */,
+				E9FAA6172D9E723F00E9AC9D /* hoppermcpd */,
+				E9D78E702D9E77820001AA66 /* hopperinjectd */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,11 +228,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				E9FAA5DE2D9E665400E9AC9D /* PBXTargetDependency */,
 			);
 			name = HopperMCPPlugin;
 			packageProductDependencies = (
 				E9530A9B2D9D944C008FBC7F /* Hopper */,
-				E9530B0D2D9D9DA5008FBC7F /* MCP */,
 			);
 			productName = HopperMCPPlugin;
 			productReference = E9530A0E2D9C3393008FBC7F /* HopperMCPPlugin.hopperTool */;
@@ -200,12 +280,81 @@
 			);
 			name = HopperMCPCore;
 			packageProductDependencies = (
-				E9530AE82D9D9900008FBC7F /* MCP */,
 				E9530B0B2D9D9B8F008FBC7F /* Hopper */,
+				E9FAA5D92D9E665000E9AC9D /* MCP */,
 			);
 			productName = HopperMCPCore;
 			productReference = E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		E9D78E6F2D9E77820001AA66 /* hopperinjectd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9D78E742D9E77820001AA66 /* Build configuration list for PBXNativeTarget "hopperinjectd" */;
+			buildPhases = (
+				E9D78E6C2D9E77820001AA66 /* Sources */,
+				E9D78E6D2D9E77820001AA66 /* Frameworks */,
+				E9D78E6E2D9E77820001AA66 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E9D78E712D9E77820001AA66 /* hopperinjectd */,
+			);
+			name = hopperinjectd;
+			packageProductDependencies = (
+				E9D78E7D2D9E7EE20001AA66 /* HopperInjectionService */,
+			);
+			productName = hopperinjectd;
+			productReference = E9D78E702D9E77820001AA66 /* hopperinjectd */;
+			productType = "com.apple.product-type.tool";
+		};
+		E9FAA6032D9E721000E9AC9D /* HopperMCPApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9FAA6122D9E721100E9AC9D /* Build configuration list for PBXNativeTarget "HopperMCPApp" */;
+			buildPhases = (
+				E9FAA6002D9E721000E9AC9D /* Sources */,
+				E9FAA6012D9E721000E9AC9D /* Frameworks */,
+				E9FAA6022D9E721000E9AC9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E9FAA6052D9E721000E9AC9D /* HopperMCPApp */,
+			);
+			name = HopperMCPApp;
+			packageProductDependencies = (
+				E9FAA6262D9E730800E9AC9D /* SwiftyXPC */,
+			);
+			productName = HopperMCPApp;
+			productReference = E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E9FAA6162D9E723F00E9AC9D /* hoppermcpd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9FAA61B2D9E723F00E9AC9D /* Build configuration list for PBXNativeTarget "hoppermcpd" */;
+			buildPhases = (
+				E9FAA6132D9E723F00E9AC9D /* Sources */,
+				E9FAA6142D9E723F00E9AC9D /* Frameworks */,
+				E9FAA6152D9E723F00E9AC9D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E9FAA6182D9E723F00E9AC9D /* hoppermcpd */,
+			);
+			name = hoppermcpd;
+			packageProductDependencies = (
+				E9D78E6A2D9E75B10001AA66 /* HopperInjectionService */,
+			);
+			productName = hoppermcpd;
+			productReference = E9FAA6172D9E723F00E9AC9D /* hoppermcpd */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -214,7 +363,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					E9530A0D2D9C3393008FBC7F = {
@@ -226,6 +375,15 @@
 					};
 					E9530AE02D9D98F7008FBC7F = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					E9D78E6F2D9E77820001AA66 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					E9FAA6032D9E721000E9AC9D = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					E9FAA6162D9E723F00E9AC9D = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -242,15 +400,20 @@
 				E9530A072D9C3324008FBC7F /* XCRemoteSwiftPackageReference "swift-sdk" */,
 				E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */,
 				E9530A732D9D7545008FBC7F /* XCRemoteSwiftPackageReference "swift-service-lifecycle" */,
+				E9FAA6202D9E72C700E9AC9D /* XCRemoteSwiftPackageReference "MachInjector" */,
+				E9FAA6232D9E72ED00E9AC9D /* XCRemoteSwiftPackageReference "SwiftyXPC" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E985A9E52D9C04E5005A573C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				E9FAA6032D9E721000E9AC9D /* HopperMCPApp */,
 				E9530A1A2D9C3440008FBC7F /* HopperMCPServer */,
 				E9530A0D2D9C3393008FBC7F /* HopperMCPPlugin */,
 				E9530AE02D9D98F7008FBC7F /* HopperMCPCore */,
+				E9FAA6162D9E723F00E9AC9D /* hoppermcpd */,
+				E9D78E6F2D9E77820001AA66 /* hopperinjectd */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +430,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9FAA6022D9E721000E9AC9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9FAA6292D9E735B00E9AC9D /* HopperMCP in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +485,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9D78E6C2D9E77820001AA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9FAA6002D9E721000E9AC9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9FAA6132D9E723F00E9AC9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E9FAA5DE2D9E665400E9AC9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9530AE02D9D98F7008FBC7F /* HopperMCPCore */;
+			targetProxy = E9FAA5DD2D9E665400E9AC9D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E9530A102D9C3393008FBC7F /* Debug */ = {
@@ -604,6 +804,104 @@
 			};
 			name = Release;
 		};
+		E9D78E752D9E77820001AA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E9D78E762D9E77820001AA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E9FAA6102D9E721100E9AC9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HopperMCPApp/HopperMCPApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E9FAA6112D9E721100E9AC9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HopperMCPApp/HopperMCPApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E9FAA61C2D9E723F00E9AC9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E9FAA61D2D9E723F00E9AC9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D5Q73692VW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -643,6 +941,33 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E9D78E742D9E77820001AA66 /* Build configuration list for PBXNativeTarget "hopperinjectd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9D78E752D9E77820001AA66 /* Debug */,
+				E9D78E762D9E77820001AA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9FAA6122D9E721100E9AC9D /* Build configuration list for PBXNativeTarget "HopperMCPApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9FAA6102D9E721100E9AC9D /* Debug */,
+				E9FAA6112D9E721100E9AC9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9FAA61B2D9E723F00E9AC9D /* Build configuration list for PBXNativeTarget "hoppermcpd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9FAA61C2D9E723F00E9AC9D /* Debug */,
+				E9FAA61D2D9E723F00E9AC9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -669,6 +994,22 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		E9FAA6202D9E72C700E9AC9D /* XCRemoteSwiftPackageReference "MachInjector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MxIris-Reverse-Engineering/MachInjector";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		E9FAA6232D9E72ED00E9AC9D /* XCRemoteSwiftPackageReference "SwiftyXPC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MxIris-macOS-Library-Forks/SwiftyXPC";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -687,20 +1028,28 @@
 			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;
 			productName = Hopper;
 		};
-		E9530AE82D9D9900008FBC7F /* MCP */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530A072D9C3324008FBC7F /* XCRemoteSwiftPackageReference "swift-sdk" */;
-			productName = MCP;
-		};
 		E9530B0B2D9D9B8F008FBC7F /* Hopper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;
 			productName = Hopper;
 		};
-		E9530B0D2D9D9DA5008FBC7F /* MCP */ = {
+		E9D78E6A2D9E75B10001AA66 /* HopperInjectionService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HopperInjectionService;
+		};
+		E9D78E7D2D9E7EE20001AA66 /* HopperInjectionService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HopperInjectionService;
+		};
+		E9FAA5D92D9E665000E9AC9D /* MCP */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9530A072D9C3324008FBC7F /* XCRemoteSwiftPackageReference "swift-sdk" */;
 			productName = MCP;
+		};
+		E9FAA6262D9E730800E9AC9D /* SwiftyXPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9FAA6232D9E72ED00E9AC9D /* XCRemoteSwiftPackageReference "SwiftyXPC" */;
+			productName = SwiftyXPC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

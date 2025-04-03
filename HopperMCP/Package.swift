@@ -5,38 +5,30 @@ import PackageDescription
 
 let package = Package(
     name: "HopperMCP",
-    platforms: [.macOS(.v13)],
     products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "HopperMCP",
             targets: ["HopperMCP"]
         ),
+        .library(
+            name: "HopperInjectionService",
+            targets: ["HopperInjectionService"]
+        ),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/reddavis/Asynchrone",
-            from: "0.1.0"
-        ),
-        .package(
-            url: "https://github.com/groue/Semaphore",
-            from: "0.1.0"
-        ),
-        .package(
-            url: "https://github.com/ajevans99/swift-json-schema",
-            from: "0.3.2"
-        ),
-        .package(
-            url: "https://github.com/modelcontextprotocol/swift-sdk",
-            from: "0.6.0"
-        ),
+        .package(url: "https://github.com/MxIris-macOS-Library-Forks/SwiftyXPC", branch: "main"),
+        .package(url: "https://github.com/MxIris-Reverse-Engineering/MachInjector", branch: "main"),
     ],
     targets: [
         .target(
-            name: "HopperMCP",
+            name: "HopperMCP"
+        ),
+        .target(
+            name: "HopperInjectionService",
             dependencies: [
-                .product(name: "Asynchrone", package: "Asynchrone"),
-                .product(name: "Semaphore", package: "Semaphore"),
-                .product(name: "MCP", package: "swift-sdk"),
+                .product(name: "MachInjector", package: "MachInjector"),
+                .product(name: "SwiftyXPC", package: "SwiftyXPC"),
             ]
         ),
     ]

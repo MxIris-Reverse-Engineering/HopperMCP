@@ -1,10 +1,10 @@
 @preconcurrency import Hopper
-@preconcurrency import HopperMCPCore
+//@preconcurrency import HopperMCPCore
 import Foundation
 
 @objc(HopperMCPMainPlugin)
 class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
-    let serverManager: ServerNetworkManager
+//    var serverManager: ServerNetworkManager?
 
     let services: HPHopperServices
 
@@ -46,7 +46,7 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
 
     required init(hopperServices services: HPHopperServices) {
         self.services = services
-        self.serverManager = .init(services: [HopperService(services: services)])
+//        self.serverManager = .init(services: [HopperService(services: services)])
         super.init()
     }
 
@@ -66,13 +66,13 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
 
     @objc func startPluginServer(_ sender: Any?) {
         Task {
-            await serverManager.start()
+//            await serverManager.start()
         }
     }
 
     @objc func stopPluginServer(_ sender: Any?) {
         Task {
-            await serverManager.stop()
+//            await serverManager.stop()
         }
     }
 }
