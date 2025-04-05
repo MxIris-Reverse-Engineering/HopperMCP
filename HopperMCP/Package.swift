@@ -5,30 +5,31 @@ import PackageDescription
 
 let package = Package(
     name: "HopperMCP",
+    platforms: [.macOS(.v14)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "HopperMCP",
-            targets: ["HopperMCP"]
+            name: "HopperServiceInterface",
+            targets: ["HopperServiceInterface"]
         ),
         .library(
-            name: "HopperInjectionService",
-            targets: ["HopperInjectionService"]
+            name: "HopperMCPShared",
+            targets: ["HopperMCPShared"]
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/MxIris-macOS-Library-Forks/SwiftyXPC", branch: "main"),
-        .package(url: "https://github.com/MxIris-Reverse-Engineering/MachInjector", branch: "main"),
+        .package(path: "../../../Library/macOS/swift-helper-service"),
+        .package(url: "https://github.com/ajevans99/swift-json-schema", from: "0.3.2"),
+        .package(url: "https://github.com/gsabran/mcp-swift-sdk", branch: "main"),
     ],
     targets: [
         .target(
-            name: "HopperMCP"
+            name: "HopperMCPShared"
         ),
         .target(
-            name: "HopperInjectionService",
+            name: "HopperServiceInterface",
             dependencies: [
-                .product(name: "MachInjector", package: "MachInjector"),
-                .product(name: "SwiftyXPC", package: "SwiftyXPC"),
+                .product(name: "HelperService", package: "swift-helper-service"),
+                .product(name: "JSONSchemaBuilder", package: "swift-json-schema"),
             ]
         ),
     ]

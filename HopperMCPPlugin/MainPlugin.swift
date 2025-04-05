@@ -1,12 +1,12 @@
 @preconcurrency import Hopper
-//@preconcurrency import HopperMCPCore
+@preconcurrency import HopperMCPCore
 import Foundation
 
 @objc(HopperMCPMainPlugin)
 class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
-//    var serverManager: ServerNetworkManager?
-
     let services: HPHopperServices
+
+    var server: HelperServer?
 
     static func sdkVersion() -> Int32 {
         return HOPPER_CURRENT_SDK_VERSION
@@ -46,7 +46,6 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
 
     required init(hopperServices services: HPHopperServices) {
         self.services = services
-//        self.serverManager = .init(services: [HopperService(services: services)])
         super.init()
     }
 
@@ -65,14 +64,22 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
     }
 
     @objc func startPluginServer(_ sender: Any?) {
-        Task {
-//            await serverManager.start()
+        Task { @MainActor in
+            do {
+                let server = try HelperServer(serverType: .plain(name: "Hopper", identifier: "com.JH.HopperMCP.Server"), services: [MainService(), HopperService(services: services)])
+                server.activate()
+                try await server.connectToTool(machServiceName: "com.JH.hoppermcpd", isPrivilegedHelperTool: true)
+                services.logMessage("Connected to helper tool")
+                self.server = server
+            } catch {
+                services.logMessage("\(error)")
+            }
         }
     }
 
-    @objc func stopPluginServer(_ sender: Any?) {
-        Task {
-//            await serverManager.stop()
-        }
+    @objc func stopPluginServer(_ sender: Any?) {}
+
+    deinit {
+        services.logMessage("Deinit \(self)")
     }
 }

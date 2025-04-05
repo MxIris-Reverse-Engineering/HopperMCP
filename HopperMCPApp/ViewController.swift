@@ -5,22 +5,96 @@
 //  Created by JH on 2025/4/3.
 //
 
-import Cocoa
+import AppKit
+import SwiftUI
 
-class ViewController: NSViewController {
+class ViewController: NSHostingController<ContentView> {
+    let viewModel = ViewModel()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    init() {
+        super.init(rootView: .init(viewModel: viewModel))
+        sizingOptions = .preferredContentSize
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    @available(*, unavailable)
+    @MainActor @preconcurrency dynamic required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-
 }
 
+struct ContentView: View {
+    var viewModel: ViewModel
+
+    var body: some View {
+        Image(nsImage: NSApplication.shared.applicationIconImage)
+            .resizable()
+            .frame(width: 100, height: 100)
+
+        Form {
+            Section {
+                HStack {
+                    Text("Install Helper")
+
+                    Spacer()
+
+                    Button {
+                        Task {
+                            try await viewModel.installHelper()
+                        }
+                    } label: {
+                        Text("Install")
+                    }
+                }
+
+                HStack {
+                    Text("Connect to Helper")
+
+                    Spacer()
+
+                    Button {
+                        Task {
+                            try await viewModel.connectToHelper()
+                        }
+                    } label: {
+                        Text("Connect")
+                    }
+                }
+
+                HStack {
+                    Text("Install Hopper Plugin")
+
+                    Spacer()
+
+                    Button {
+                        Task {
+                            try await viewModel.installPlugin()
+                        }
+                    } label: {
+                        Text("Install")
+                    }
+                }
+
+                HStack {
+                    Text("Inject Hopper App")
+
+                    Spacer()
+
+                    Button {
+                        Task {
+                            try await viewModel.injectHopper()
+                        }
+                    } label: {
+                        Text("Inject")
+                    }
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .frame(minWidth: 400)
+    }
+}
+
+@available(macOS 14.0, *)
+#Preview {
+    ContentView(viewModel: .init())
+}

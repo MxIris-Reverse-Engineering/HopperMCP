@@ -1,9 +1,3 @@
-//
-//  HopperMCPCore.swift
-//  HopperMCPCore
-//
-//  Created by JH on 2025/4/3.
-//
-
-import Foundation
-
+@_exported import HelperServer
+@_exported import HelperService
+@_exported import MainService

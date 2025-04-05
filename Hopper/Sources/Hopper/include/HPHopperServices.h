@@ -64,4 +64,8 @@
 - (nullable NSObject<HPCallDestination> *)callDestination:(Address)address;
 - (nullable NSObject<HPCallDestination> *)callDestination:(Address)address withCPUMode:(uint8_t)cpuMode;
 
+#pragma mark - Private methods
+
++ (instancetype)sharedInstance;
+
 @end

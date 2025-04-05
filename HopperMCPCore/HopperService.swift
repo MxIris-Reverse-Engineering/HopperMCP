@@ -1,31 +1,63 @@
-import Foundation
 import OSLog
+import AppKit
+import HelperService
+import HopperServiceInterface
 @preconcurrency import Hopper
 
-public actor HopperService: @preconcurrency Service {
+public final class HopperService: HelperService {
     public let services: HPHopperServices
 
     public init(services: HPHopperServices) {
         self.services = services
     }
 
-    public enum Error: Swift.Error {
+    public enum Error: LocalizedError {
         case invalidService
         case invalidDocument
         case invalidFile
         case invalidProcedure
+        public var errorDescription: String? {
+            switch self {
+            case .invalidService:
+                return "Invalid service"
+            case .invalidDocument:
+                return "Invalid document"
+            case .invalidFile:
+                return "Invalid file"
+            case .invalidProcedure:
+                return "Invalid procedure"
+            }
+        }
     }
 
-    public lazy var tools = [
-        Tool(name: "GetCurrentAssemblyCode", description: "Get Current Assembly Code", inputSchema: [:], implementation: { [weak self] arguments in
-            guard let self else { throw Error.invalidService }
-            guard let doc = await services.currentDocument() else { throw Error.invalidDocument }
-            guard let file = doc.disassembledFile() else { throw Error.invalidFile }
-            guard let procedure = file.procedure(at: doc.currentAddress()) else { throw Error.invalidProcedure }
-            guard let assemblyCode = procedure.completeAssemblyCode() else { throw Error.invalidProcedure }
-            return assemblyCode
-        }),
-    ]
+    public func setupHandler(_ handler: any HelperHandler) {
+        handler.setMessageHandler(handler: { [self] (request: GetCurrentAssemblyRequest) async throws -> GetCurrentAssemblyRequest.Response in
+            let documents = await NSDocumentController.shared.documents
+            guard let doc = services.currentDocument() ?? (documents.last as? HPDocument) else {
+                services.logMessage("Invalid document")
+                throw Error.invalidDocument
+            }
+            services.logMessage("\(doc)")
+            guard let file = doc.disassembledFile() else {
+                services.logMessage("Invalid file")
+                throw Error.invalidFile
+            }
+            services.logMessage("\(file)")
+            guard let procedure = file.procedure(at: doc.currentAddress()) else {
+                services.logMessage("Invalid procedure")
+                throw Error.invalidProcedure
+            }
+            services.logMessage("\(procedure)")
+            guard let assemblyCode = procedure.completeAssemblyCode() else {
+                services.logMessage("Invalid assembly code")
+                throw Error.invalidProcedure
+            }
+            services.logMessage(assemblyCode)
+            return .init(assembly: assemblyCode)
+        })
+    }
+
+    public func run() async throws {}
 }
 
 extension HPProcedure {
