@@ -19,7 +19,7 @@ let package = Package(
     dependencies: [
         .package(path: "../../../Library/macOS/swift-helper-service"),
         .package(url: "https://github.com/ajevans99/swift-json-schema", from: "0.3.2"),
-        .package(url: "https://github.com/gsabran/mcp-swift-sdk", branch: "main"),
+        .package(url: "https://github.com/MxIris-Library-Forks/mcp-swift-sdk", branch: "main"),
     ],
     targets: [
         .target(
@@ -30,6 +30,7 @@ let package = Package(
             dependencies: [
                 .product(name: "HelperService", package: "swift-helper-service"),
                 .product(name: "JSONSchemaBuilder", package: "swift-json-schema"),
+                .product(name: "MCPInterface", package: "mcp-swift-sdk"),
             ]
         ),
     ]

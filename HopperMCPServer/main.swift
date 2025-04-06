@@ -4,6 +4,7 @@ import MCPServer
 import HelperService
 import HelperClient
 import HopperServiceInterface
+import JSONSchemaBuilder
 
 extension Logger {
     static var server: Logger = {
@@ -22,16 +23,18 @@ let serverInfos = try await helperClient.availableServerInfos()
 for serverInfo in serverInfos {
     if serverInfo.identifier == "com.JH.HopperMCP.Server" {
         try await helperClient.connectToServer(info: serverInfo)
+        func makeTool<Request: ToolRequest>(for requestType: Request.Type) -> Tool<Request> {
+            Tool(name: Request.name) { (input: Request) in
+                try await helperClient.sendToServer(request: input, for: serverInfo).results.map { .text(.init(text: $0)) }
+            }
+        }
         let server = try await MCPServer(
             info: Implementation(name: "HopperMCP", version: "0.1.0"), capabilities: .init(tools: [
-                Tool(name: "Get current assembly code") { (input: GetCurrentAssemblyRequest) in
-                    let response = try await helperClient.sendToServer(request: GetCurrentAssemblyRequest(), for: serverInfo)
-                    let encoder = JSONEncoder()
-                    let data = try encoder.encode(response)
-                    let text = String(data: data, encoding: .utf8)!
-                    return [.text(.init(text: text))]
-                },
-
+                makeTool(for: ListDocumentsRequest.self),
+                makeTool(for: CurrentAssemblyRequest.self),
+                makeTool(for: CurrentPseudocodeRequest.self),
+                makeTool(for: CurrentAssemblyByDocumentRequest.self),
+                makeTool(for: CurrentPseudocodeByDocumentRequest.self),
             ]),
             transport: .stdio()
         )

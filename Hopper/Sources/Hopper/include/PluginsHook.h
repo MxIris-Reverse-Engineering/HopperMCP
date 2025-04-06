@@ -12,9 +12,9 @@
 
 @interface ToolFactory : NSObject
 
-+ (id)sharedInstance;
++ (instancetype)sharedInstance;
 + (void)loadPlugins;
-+ (void)loadPluginsIncludingUserPlugins:(BOOL)a0;
++ (void)loadPluginsIncludingUserPlugins:(BOOL)includingUserPlugins;
 + (id)toolsSearchPaths;
 + (id)userToolsPath;
 + (id)loadedPlugins;
@@ -22,7 +22,7 @@
 + (id)pluginForUUID:(id)a0;
 + (BOOL)invokeSelector:(id)a0 onPluginUUIDString:(id)a1;
 
-- (void)loadPluginsIncludingUserPlugins:(BOOL)a0;
+- (void)loadPluginsIncludingUserPlugins:(BOOL)includingUserPlugins;
 - (id)loadedPlugins;
 - (void)invokePlugin:(id)a0;
 - (id)buildMenuForDesc:(id)a0 forPlugin:(id)a1;

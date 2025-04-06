@@ -1,5 +1,6 @@
 @class NSMutableAttributedString;
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability-completeness"
 @interface PseudoCode : NSObject
 + (id)pseudoCodeWithString:(id)a0 forNode:(id)a1;
 - (id)init;
@@ -51,3 +52,4 @@
 - (id)description;
 
 @end
+#pragma clang diagnostic pop

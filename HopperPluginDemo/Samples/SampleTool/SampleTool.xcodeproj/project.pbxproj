@@ -9,18 +9,16 @@
 /* Begin PBXBuildFile section */
 		074686A222733F1E002554E4 /* SampleTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074686A122733F1E002554E4 /* SampleTool.swift */; };
 		07AC766D18C8CB9A007D5414 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07AC766B18C8CB9A007D5414 /* InfoPlist.strings */; };
-		E95309E62D9C1460008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E95309E52D9C1460008FBC7F /* Hopper */; };
+		E95309E62D9C1460008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E95309E52D9C1460008FBC7F /* Hopper */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		074686A022733F1E002554E4 /* SampleTool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleTool-Bridging-Header.h"; sourceTree = "<group>"; };
 		074686A122733F1E002554E4 /* SampleTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTool.swift; sourceTree = "<group>"; };
 		07AC766318C8CB9A007D5414 /* SampleTool.hopperTool */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleTool.hopperTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		07AC766618C8CB9A007D5414 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		07AC766A18C8CB9A007D5414 /* SampleTool-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SampleTool-Info.plist"; sourceTree = "<group>"; };
 		07AC766C18C8CB9A007D5414 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07AC766E18C8CB9A007D5414 /* SampleTool-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleTool-Prefix.pch"; sourceTree = "<group>"; };
-		07AC767818C8CED6007D5414 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +54,6 @@
 		07AC766518C8CB9A007D5414 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07AC767818C8CED6007D5414 /* Cocoa.framework */,
-				07AC766618C8CB9A007D5414 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,6 +311,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cryptic-apps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -348,6 +345,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cryptic-apps.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -53,13 +53,17 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
         return [
             [
                 HPM_TITLE: "Start MCP Plugin",
-                HPM_SELECTOR: "startPluginServer:",
+                HPM_SELECTOR: NSStringFromSelector(#selector(startPluginServer(_:))),
             ],
 
             [
                 HPM_TITLE: "Stop MCP Plugin",
-                HPM_SELECTOR: "stopPluginServer:",
+                HPM_SELECTOR: NSStringFromSelector(#selector(stopPluginServer(_:))),
             ],
+            [
+                HPM_TITLE: "Reload Tool Plugins",
+                HPM_SELECTOR: NSStringFromSelector(#selector(reloadToolPlugins(_:))),
+            ]
         ]
     }
 
@@ -79,6 +83,10 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
 
     @objc func stopPluginServer(_ sender: Any?) {}
 
+    @objc func reloadToolPlugins(_ sender: Any?) {
+        Dynamic.ToolFactory.loadPluginsIncludingUserPlugins(true)
+    }
+    
     deinit {
         services.logMessage("Deinit \(self)")
     }

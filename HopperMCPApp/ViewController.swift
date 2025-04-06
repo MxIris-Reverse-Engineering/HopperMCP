@@ -47,20 +47,6 @@ struct ContentView: View {
                 }
 
                 HStack {
-                    Text("Connect to Helper")
-
-                    Spacer()
-
-                    Button {
-                        Task {
-                            try await viewModel.connectToHelper()
-                        }
-                    } label: {
-                        Text("Connect")
-                    }
-                }
-
-                HStack {
                     Text("Install Hopper Plugin")
 
                     Spacer()
@@ -85,6 +71,22 @@ struct ContentView: View {
                         }
                     } label: {
                         Text("Inject")
+                    }
+                }
+                
+                HStack {
+                    Text("Copy MCP Server Path")
+                    
+                    Spacer()
+                    
+                    Button {
+                        if let mcpServerPath = viewModel.mcpServerURL?.path {
+                            let pasteboard = NSPasteboard.general
+                            pasteboard.clearContents()
+                            pasteboard.setString(mcpServerPath, forType: .string)
+                        }
+                    } label: {
+                        Text("Copy")
                     }
                 }
             }

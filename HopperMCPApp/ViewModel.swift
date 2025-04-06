@@ -24,12 +24,15 @@ final class ViewModel {
 
     public private(set) var isHelperConnected: Bool = false
     
-    var isPluginInstalled: Bool {
+    public var isPluginInstalled: Bool {
         (try? FileManager.default.contentsOfDirectory(atPath: Self.pluginSearchPath))?.contains(where: { $0 == Self.pluginURL.path }) ?? false
     }
 
     public private(set) var isHopperRunning: Bool = false
 
+    public var mcpServerURL: URL? {
+        Bundle.main.url(forResource: "HopperMCPServer", withExtension: nil)
+    }
 
     private let helperClient = HelperClient()
 

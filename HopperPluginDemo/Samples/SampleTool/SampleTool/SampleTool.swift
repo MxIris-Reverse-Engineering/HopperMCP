@@ -56,16 +56,29 @@ class SwiftSampleTool: NSObject, HopperTool {
 
     func toolMenuDescription() -> [[String: Any]] {
         return [
-            [HPM_TITLE: "Sample Tool Fct1",
-             HPM_SELECTOR: "fct1:"],
+            [
+                HPM_TITLE: "Sample Tool Fct1",
+                HPM_SELECTOR: "fct1:",
+            ],
 
-            [HPM_TITLE: "Sample Tool Menu",
-             HPM_SUBMENU: [
-                 [HPM_TITLE: "Fct 2",
-                  HPM_SELECTOR: "fct2:"],
-                 [HPM_TITLE: "Fct 3",
-                  HPM_SELECTOR: "fct3:"],
-             ]],
+            [
+                HPM_TITLE: "Sample Tool Menu",
+                HPM_SUBMENU: [
+                    [
+                        HPM_TITLE: "Fct 2",
+                        HPM_SELECTOR: "fct2:",
+                    ],
+                    [
+                        HPM_TITLE: "Fct 3",
+                        HPM_SELECTOR: "fct3:",
+                    ],
+                ],
+            ],
+            
+//            [
+//                HPM_TITLE: "Reload Plugins",
+//                HPM_SELECTOR: NSStringFromSelector(#selector(reloadPlugins(_:))),
+//            ],
         ]
     }
 
@@ -105,6 +118,10 @@ class SwiftSampleTool: NSObject, HopperTool {
                 services.logMessage(assemblyCode)
             }
         }
+    }
+
+    @objc func reloadPlugins(_ sender: Any?) {
+//        NSClassFromString("ToolFactory")?.perform(NSSelectorFromString("loadPluginsIncludingUserPlugins:"), with: true, afterDelay: 0.0)
     }
 
     func produceStrings(file: HPDisassembledFile, ofProcedure procedure: HPProcedure) -> String? {
