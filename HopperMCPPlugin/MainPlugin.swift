@@ -55,7 +55,6 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
                 HPM_TITLE: "Start MCP Plugin",
                 HPM_SELECTOR: NSStringFromSelector(#selector(startPluginServer(_:))),
             ],
-
             [
                 HPM_TITLE: "Stop MCP Plugin",
                 HPM_SELECTOR: NSStringFromSelector(#selector(stopPluginServer(_:))),

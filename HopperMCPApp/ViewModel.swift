@@ -45,7 +45,11 @@ final class ViewModel {
     public init() {
         
         Task {
-            try await connectToHelper()
+            do {
+                try await connectToHelper()
+            } catch {
+                print(error)
+            }
         }
         
         Task {

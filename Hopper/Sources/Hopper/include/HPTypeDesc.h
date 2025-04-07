@@ -65,4 +65,6 @@
 - (nullable NSObject<HPMethodSignature> *)signature;
 - (void)setSignature:(nullable NSObject<HPMethodSignature> *)signature;
 
+@property (readonly) NSMutableArray *structFields;
+@property (readonly) NSMutableArray *enumFields;
 @end

@@ -107,8 +107,11 @@ class SwiftSampleTool: NSObject, HopperTool {
 
     @objc func fct3(_ sender: Any?) {
         services.logMessage("testsss")
-        if let doc = (NSDocumentController.shared.documents.last as? HPDocument), let file = doc.disassembledFile(), let procedure = file.procedure(at: doc.currentAddress()) {
-            services.logMessage("\(file.typeDatabase())")
+        if let doc = (NSDocumentController.shared.documents.last as? HPDocument), let file = doc.disassembledFile() {
+            guard let sections = file.sectionsNamed("__swift5_types") as? [HPSection] else { return }
+            for section in sections {
+                services.logMessage("\(file.buildSwiftTypeList(section))")
+            }
 //            services.logMessage("\(object_getClass(file.swiftStructDescriptorStructure()))")
 //            if let pseudoCode = procedure.completePseudoCode() {
 //                services.logMessage(pseudoCode.string())

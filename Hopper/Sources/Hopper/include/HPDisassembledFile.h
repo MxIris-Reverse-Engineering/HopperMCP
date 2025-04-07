@@ -331,6 +331,10 @@ typedef void (^FileLoadingCallbackInfo)(NSString * _Nonnull desc, float progress
 - (id)allEnumTypesSortedByShortName;
 - (id)typeForUUID:(id)a0;
 - (id)typeWithCName:(id)a0;
+
+- (nullable NSArray<id<HPSection>> *)sectionsNamed:(NSString *)name;
+- (NSArray *)buildSwiftTypeList:(id<HPSection>)section;
+- (NSArray *)buildSwiftProtocolList:(id<HPSection>)section;
 #pragma clang diagnostic pop
 
 @end
