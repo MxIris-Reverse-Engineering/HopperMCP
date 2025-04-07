@@ -39,7 +39,11 @@ struct ContentView: View {
 
                     Button {
                         Task {
-                            try await viewModel.installHelper()
+                            do {
+                                try await viewModel.installHelper()
+                            } catch {
+                                print(error)
+                            }
                         }
                     } label: {
                         Text("Install")

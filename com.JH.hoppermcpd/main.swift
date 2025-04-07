@@ -9,8 +9,7 @@ import Foundation
 import HelperService
 import InjectionService
 import HelperServer
-import MainService
 
-let server = try HelperServer(serverType: .machService(name: "com.JH.hoppermcpd"), services: [MainService(), InjectionService()])
-server.activate()
-RunLoop.current.run()
+let server = try await HelperServer(serverType: .machService(name: "com.JH.hoppermcpd"), services: [InjectionService()])
+await server.activate()
+try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in }

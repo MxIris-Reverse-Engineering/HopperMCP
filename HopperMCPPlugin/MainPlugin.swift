@@ -70,8 +70,8 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
     @objc func startPluginServer(_ sender: Any?) {
         Task { @MainActor in
             do {
-                let server = try HelperServer(serverType: .plain(name: "Hopper", identifier: "com.JH.HopperMCP.Server"), services: [MainService(), HopperService(services: services)])
-                server.activate()
+                let server = try await HelperServer(serverType: .plain(name: "Hopper", identifier: "com.JH.HopperMCP.Server"), services: [HopperService(services: services)])
+                await server.activate()
                 try await server.connectToTool(machServiceName: "com.JH.hoppermcpd", isPrivilegedHelperTool: true)
                 services.logMessage("Connected to helper tool")
                 self.server = server

@@ -66,6 +66,6 @@
 
 #pragma mark - Private methods
 
-+ (instancetype)sharedInstance;
++ (nonnull instancetype)sharedInstance;
 
 @end

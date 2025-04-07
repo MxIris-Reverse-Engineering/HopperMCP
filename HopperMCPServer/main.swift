@@ -1,4 +1,4 @@
-import Logging
+import OSLog
 import Foundation
 import MCPServer
 import HelperService
@@ -8,9 +8,7 @@ import JSONSchemaBuilder
 
 extension Logger {
     static var server: Logger = {
-        var log = Logger(label: "com.JH.hoppermcpd") { StreamLogHandler.standardError(label: $0) }
-        log.logLevel = .debug
-        return log
+        Logger(subsystem: "com.JH.HopperMCPServer", category: "HopperMCPServer")
     }()
 }
 

@@ -249,6 +249,8 @@ typedef void (^FileLoadingCallbackInfo)(NSString * _Nonnull desc, float progress
 - (BOOL)importTypesFromData:(nonnull NSData *)data;
 - (nonnull NSData *)exportTypes;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability-completeness"
 // MARK: - Private methods
 - (id)cxxTypeWithName:(id)a0;
 - (id)cxxCompactUnwindEncodingT;
@@ -329,4 +331,6 @@ typedef void (^FileLoadingCallbackInfo)(NSString * _Nonnull desc, float progress
 - (id)allEnumTypesSortedByShortName;
 - (id)typeForUUID:(id)a0;
 - (id)typeWithCName:(id)a0;
+#pragma clang diagnostic pop
+
 @end

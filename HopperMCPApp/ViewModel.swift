@@ -68,6 +68,7 @@ final class ViewModel {
 
     public func installHelper() async throws {
         try await helperClient.installTool(name: HopperMCPDaemonBundleIdentifier)
+        try await connectToHelper()
     }
     
     public nonisolated func installPlugin() async throws {

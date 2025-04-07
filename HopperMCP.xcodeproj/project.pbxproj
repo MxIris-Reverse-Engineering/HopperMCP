@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E9530A752D9D7545008FBC7F /* ServiceLifecycle in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A742D9D7545008FBC7F /* ServiceLifecycle */; };
 		E9530A9C2D9D944C008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A9B2D9D944C008FBC7F /* Hopper */; };
 		E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B0B2D9D9B8F008FBC7F /* Hopper */; };
-		E9530B932D9ED803008FBC7F /* HelperService in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B922D9ED803008FBC7F /* HelperService */; };
 		E9530B952D9ED803008FBC7F /* InjectionService in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B942D9ED803008FBC7F /* InjectionService */; };
 		E9530B9D2D9ED9C0008FBC7F /* HelperClient in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B9C2D9ED9C0008FBC7F /* HelperClient */; };
 		E9530B9F2D9ED9C0008FBC7F /* InjectionService in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B9E2D9ED9C0008FBC7F /* InjectionService */; };
@@ -18,9 +16,7 @@
 		E9530BDC2D9FFA9E008FBC7F /* HopperMCPCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */; };
 		E9530BDD2D9FFA9E008FBC7F /* HopperMCPCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9530BE32D9FFB75008FBC7F /* HopperInjection.framework in Resources */ = {isa = PBXBuildFile; fileRef = E9530B812D9ED31D008FBC7F /* HopperInjection.framework */; };
-		E984DBDC2DA2B465007E689A /* MCPInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E984DBDB2DA2B465007E689A /* MCPInterface */; };
 		E984DC3D2DA2D635007E689A /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E984DC3C2DA2D635007E689A /* Dynamic */; };
-		E989D1922DA0FDF600A1BD18 /* MainService in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1912DA0FDF600A1BD18 /* MainService */; };
 		E989D1C72DA1046100A1BD18 /* MCPServer in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1C62DA1046100A1BD18 /* MCPServer */; };
 		E989D1EC2DA11D2D00A1BD18 /* HopperMCPPlugin.hopperTool in Resources */ = {isa = PBXBuildFile; fileRef = E9530A0E2D9C3393008FBC7F /* HopperMCPPlugin.hopperTool */; };
 		E989D1ED2DA11D2D00A1BD18 /* HopperMCPServer in Resources */ = {isa = PBXBuildFile; fileRef = E9530A1B2D9C3440008FBC7F /* HopperMCPServer */; };
@@ -30,14 +26,9 @@
 		E989D1F92DA1201E00A1BD18 /* HopperMCPShared in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1F82DA1201E00A1BD18 /* HopperMCPShared */; };
 		E989D1FD2DA13E7C00A1BD18 /* RunningApplicationKit in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */; };
 		E9D6225A2DA0484B00D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622592DA0484B00D456E6 /* HelperServer */; };
-		E9D6225C2DA0486600D456E6 /* MainService in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6225B2DA0486600D456E6 /* MainService */; };
-		E9D622982DA0CE5800D456E6 /* HelperCommunication in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622972DA0CE5800D456E6 /* HelperCommunication */; };
 		E9D6229A2DA0CE5800D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622992DA0CE5800D456E6 /* HelperServer */; };
-		E9D6229C2DA0CE5800D456E6 /* HelperService in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6229B2DA0CE5800D456E6 /* HelperService */; };
 		E9D6229E2DA0CF9200D456E6 /* HopperServiceInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */; };
 		E9D622A02DA0D0F700D456E6 /* HelperClient in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6229F2DA0D0F700D456E6 /* HelperClient */; };
-		E9D622A22DA0D0F700D456E6 /* HelperCommunication in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622A12DA0D0F700D456E6 /* HelperCommunication */; };
-		E9D622A42DA0D0F700D456E6 /* HelperService in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622A32DA0D0F700D456E6 /* HelperService */; };
 		E9D622A62DA0D0FB00D456E6 /* HopperServiceInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622A52DA0D0FB00D456E6 /* HopperServiceInterface */; };
 /* End PBXBuildFile section */
 
@@ -207,10 +198,7 @@
 				E9D622A62DA0D0FB00D456E6 /* HopperServiceInterface in Frameworks */,
 				E9D622A02DA0D0F700D456E6 /* HelperClient in Frameworks */,
 				E989D1C72DA1046100A1BD18 /* MCPServer in Frameworks */,
-				E9D622A22DA0D0F700D456E6 /* HelperCommunication in Frameworks */,
 				E989D1F92DA1201E00A1BD18 /* HopperMCPShared in Frameworks */,
-				E9D622A42DA0D0F700D456E6 /* HelperService in Frameworks */,
-				E9530A752D9D7545008FBC7F /* ServiceLifecycle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,12 +209,8 @@
 				E984DC3D2DA2D635007E689A /* Dynamic in Frameworks */,
 				E9D6229E2DA0CF9200D456E6 /* HopperServiceInterface in Frameworks */,
 				E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */,
-				E9D622982DA0CE5800D456E6 /* HelperCommunication in Frameworks */,
-				E9D6229C2DA0CE5800D456E6 /* HelperService in Frameworks */,
 				E989D1F52DA1201400A1BD18 /* HopperMCPShared in Frameworks */,
-				E984DBDC2DA2B465007E689A /* MCPInterface in Frameworks */,
 				E9D6229A2DA0CE5800D456E6 /* HelperServer in Frameworks */,
-				E989D1922DA0FDF600A1BD18 /* MainService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +227,7 @@
 			files = (
 				E989D1F72DA1201900A1BD18 /* HopperMCPShared in Frameworks */,
 				E9D6225A2DA0484B00D456E6 /* HelperServer in Frameworks */,
-				E9D6225C2DA0486600D456E6 /* MainService in Frameworks */,
 				E9530B952D9ED803008FBC7F /* InjectionService in Frameworks */,
-				E9530B932D9ED803008FBC7F /* HelperService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,10 +348,7 @@
 			);
 			name = HopperMCPServer;
 			packageProductDependencies = (
-				E9530A742D9D7545008FBC7F /* ServiceLifecycle */,
 				E9D6229F2DA0D0F700D456E6 /* HelperClient */,
-				E9D622A12DA0D0F700D456E6 /* HelperCommunication */,
-				E9D622A32DA0D0F700D456E6 /* HelperService */,
 				E9D622A52DA0D0FB00D456E6 /* HopperServiceInterface */,
 				E989D1C62DA1046100A1BD18 /* MCPServer */,
 				E989D1F82DA1201E00A1BD18 /* HopperMCPShared */,
@@ -397,13 +376,9 @@
 			name = HopperMCPCore;
 			packageProductDependencies = (
 				E9530B0B2D9D9B8F008FBC7F /* Hopper */,
-				E9D622972DA0CE5800D456E6 /* HelperCommunication */,
 				E9D622992DA0CE5800D456E6 /* HelperServer */,
-				E9D6229B2DA0CE5800D456E6 /* HelperService */,
 				E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */,
-				E989D1912DA0FDF600A1BD18 /* MainService */,
 				E989D1F42DA1201400A1BD18 /* HopperMCPShared */,
-				E984DBDB2DA2B465007E689A /* MCPInterface */,
 				E984DC3C2DA2D635007E689A /* Dynamic */,
 			);
 			productName = HopperMCPCore;
@@ -449,10 +424,8 @@
 			);
 			name = com.JH.hoppermcpd;
 			packageProductDependencies = (
-				E9530B922D9ED803008FBC7F /* HelperService */,
 				E9530B942D9ED803008FBC7F /* InjectionService */,
 				E9D622592DA0484B00D456E6 /* HelperServer */,
-				E9D6225B2DA0486600D456E6 /* MainService */,
 				E989D1F62DA1201900A1BD18 /* HopperMCPShared */,
 			);
 			productName = hopperinjectd;
@@ -532,7 +505,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */,
-				E9530A732D9D7545008FBC7F /* XCRemoteSwiftPackageReference "swift-service-lifecycle" */,
 				E9FAA6202D9E72C700E9AC9D /* XCRemoteSwiftPackageReference "MachInjector" */,
 				E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */,
 				E989D1C52DA1046100A1BD18 /* XCRemoteSwiftPackageReference "mcp-swift-sdk" */,
@@ -597,6 +569,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		E9530AC92D9D9715008FBC7F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1054,6 +1027,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/$(TARGET_NAME)/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.hoppermcpd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1071,6 +1045,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/$(TARGET_NAME)/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JH.hoppermcpd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1217,14 +1192,6 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E9530A732D9D7545008FBC7F /* XCRemoteSwiftPackageReference "swift-service-lifecycle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swift-server/swift-service-lifecycle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.0;
-			};
-		};
 		E984DC3B2DA2D635007E689A /* XCRemoteSwiftPackageReference "Dynamic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
@@ -1252,11 +1219,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E9530A742D9D7545008FBC7F /* ServiceLifecycle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530A732D9D7545008FBC7F /* XCRemoteSwiftPackageReference "swift-service-lifecycle" */;
-			productName = ServiceLifecycle;
-		};
 		E9530A9B2D9D944C008FBC7F /* Hopper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;
@@ -1266,11 +1228,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;
 			productName = Hopper;
-		};
-		E9530B922D9ED803008FBC7F /* HelperService */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = HelperService;
 		};
 		E9530B942D9ED803008FBC7F /* InjectionService */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1287,20 +1244,10 @@
 			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
 			productName = InjectionService;
 		};
-		E984DBDB2DA2B465007E689A /* MCPInterface */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E989D1C52DA1046100A1BD18 /* XCRemoteSwiftPackageReference "mcp-swift-sdk" */;
-			productName = MCPInterface;
-		};
 		E984DC3C2DA2D635007E689A /* Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E984DC3B2DA2D635007E689A /* XCRemoteSwiftPackageReference "Dynamic" */;
 			productName = Dynamic;
-		};
-		E989D1912DA0FDF600A1BD18 /* MainService */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = MainService;
 		};
 		E989D1C62DA1046100A1BD18 /* MCPServer */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1332,25 +1279,10 @@
 			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
 			productName = HelperServer;
 		};
-		E9D6225B2DA0486600D456E6 /* MainService */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = MainService;
-		};
-		E9D622972DA0CE5800D456E6 /* HelperCommunication */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = HelperCommunication;
-		};
 		E9D622992DA0CE5800D456E6 /* HelperServer */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
 			productName = HelperServer;
-		};
-		E9D6229B2DA0CE5800D456E6 /* HelperService */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = HelperService;
 		};
 		E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1360,16 +1292,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
 			productName = HelperClient;
-		};
-		E9D622A12DA0D0F700D456E6 /* HelperCommunication */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = HelperCommunication;
-		};
-		E9D622A32DA0D0F700D456E6 /* HelperService */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9530B912D9ED7DE008FBC7F /* XCLocalSwiftPackageReference "../../Library/macOS/swift-helper-service" */;
-			productName = HelperService;
 		};
 		E9D622A52DA0D0FB00D456E6 /* HopperServiceInterface */ = {
 			isa = XCSwiftPackageProductDependency;

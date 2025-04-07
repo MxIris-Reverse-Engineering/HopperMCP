@@ -83,6 +83,8 @@
 - (BOOL)hasTag:(nonnull NSObject<HPTag> *)tag;
 
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability-completeness"
 - (nullable PseudoCode *)completePseudoCode;
 - (id)completePseudoCodeWithCancelationBlock:(id /* block */)a0 andOptions:(unsigned long long)a1;
 - (id)signaturePseudoCode;
@@ -92,4 +94,6 @@
 - (unsigned long long)formattedProcedureHeaderLineCount;
 - (id)formattedProcedureExit;
 - (unsigned long long)formattedProcedureExitLineCount;
+#pragma clang diagnostic pop
+
 @end

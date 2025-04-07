@@ -6,7 +6,7 @@
 //  Copyright © 2019 Cryptic Apps. All rights reserved.
 //
 
-import Foundation
+import AppKit
 import Hopper
 
 @objc
@@ -52,33 +52,29 @@ class SwiftSampleTool: NSObject, HopperTool {
     required init(hopperServices services: HPHopperServices) {
         self.services = services
         super.init()
+        services.logMessage("SwiftSampleTool loaded")
     }
 
     func toolMenuDescription() -> [[String: Any]] {
         return [
             [
-                HPM_TITLE: "Sample Tool Fct1",
-                HPM_SELECTOR: "fct1:",
+                HPM_TITLE: "Sample Tool Function1",
+                HPM_SELECTOR: NSStringFromSelector(#selector(fct1(_:))),
             ],
 
             [
                 HPM_TITLE: "Sample Tool Menu",
                 HPM_SUBMENU: [
                     [
-                        HPM_TITLE: "Fct 2",
-                        HPM_SELECTOR: "fct2:",
+                        HPM_TITLE: "Function 2",
+                        HPM_SELECTOR: NSStringFromSelector(#selector(fct2(_:))),
                     ],
                     [
-                        HPM_TITLE: "Fct 3",
-                        HPM_SELECTOR: "fct3:",
+                        HPM_TITLE: "Function 3",
+                        HPM_SELECTOR: NSStringFromSelector(#selector(fct3(_:))),
                     ],
                 ],
             ],
-            
-//            [
-//                HPM_TITLE: "Reload Plugins",
-//                HPM_SELECTOR: NSStringFromSelector(#selector(reloadPlugins(_:))),
-//            ],
         ]
     }
 
@@ -110,18 +106,17 @@ class SwiftSampleTool: NSObject, HopperTool {
     }
 
     @objc func fct3(_ sender: Any?) {
-        if let doc = services.currentDocument(), let file = doc.disassembledFile(), let procedure = file.procedure(at: doc.currentAddress()) {
-            if let pseudoCode = procedure.completePseudoCode() {
-                services.logMessage(pseudoCode.string())
-            }
-            if let assemblyCode = produceStrings(file: file, ofProcedure: procedure) {
-                services.logMessage(assemblyCode)
-            }
+        services.logMessage("testsss")
+        if let doc = (NSDocumentController.shared.documents.last as? HPDocument), let file = doc.disassembledFile(), let procedure = file.procedure(at: doc.currentAddress()) {
+            services.logMessage("\(file.typeDatabase())")
+//            services.logMessage("\(object_getClass(file.swiftStructDescriptorStructure()))")
+//            if let pseudoCode = procedure.completePseudoCode() {
+//                services.logMessage(pseudoCode.string())
+//            }
+//            if let assemblyCode = produceStrings(file: file, ofProcedure: procedure) {
+//                services.logMessage(assemblyCode)
+//            }
         }
-    }
-
-    @objc func reloadPlugins(_ sender: Any?) {
-//        NSClassFromString("ToolFactory")?.perform(NSSelectorFromString("loadPluginsIncludingUserPlugins:"), with: true, afterDelay: 0.0)
     }
 
     func produceStrings(file: HPDisassembledFile, ofProcedure procedure: HPProcedure) -> String? {
@@ -179,5 +174,9 @@ class SwiftSampleTool: NSObject, HopperTool {
         }
 
         return output
+    }
+
+    deinit {
+        services.logMessage("Deinit \(self)")
     }
 }
