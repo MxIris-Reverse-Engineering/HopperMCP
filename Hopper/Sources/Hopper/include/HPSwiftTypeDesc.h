@@ -6,39 +6,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonTypes.h"
 
 @protocol HPSwiftStructDesc;
 @protocol HPSwiftEnumDesc;
 @protocol HPSwiftClassDesc;
+@protocol HPSwiftFieldDesc;
 
 @protocol HPSwiftTypeDesc <NSObject>
 
-@property (nonatomic) unsigned long long descAddress;
+@property (nonatomic) Address descAddress;
 @property (nonatomic) unsigned int flags;
 @property (copy, nonatomic) NSString *context;
 @property (copy, nonatomic) NSString *name;
-@property (nonatomic) unsigned long long fieldDescriptorAddress;
+@property (nonatomic) Address fieldDescriptorAddress;
 @property (nonatomic) unsigned long long metaDataAccessFunctionPointer;
 @property (nonatomic) int genericArgumentCount;
 @property (readonly) id<HPSwiftClassDesc> classDesc;
 @property (readonly) id<HPSwiftStructDesc> structDesc;
 @property (readonly) id<HPSwiftEnumDesc> enumDesc;
 
-- (id)fields;
-- (void)addField:(id)a0;
+- (NSArray<id<HPSwiftFieldDesc>> *)fields;
+- (void)addField:(id<HPSwiftFieldDesc>)field;
 - (unsigned long long)typeKind;
 - (BOOL)isUnique;
 - (BOOL)isGeneric;
 - (unsigned char)version;
 - (unsigned short)kindSpecificFlags;
-- (id)parentContextPrefix;
+- (NSString *)parentContextPrefix;
 
 @end
 
 @protocol HPSwiftTypeSpecificDesc <NSObject>
 
-- (id)context;
-- (id)initWithContext:(id)a0;
+- (id<HPSwiftTypeDesc>)context;
+- (instancetype)initWithContext:(id<HPSwiftTypeDesc>)context;
 
 @end
 

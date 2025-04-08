@@ -18,9 +18,9 @@
 @protocol HPCallReference;
 @protocol HPMethodSignature;
 @protocol CPUContext;
-@class PseudoCode;
+@protocol HPPseudoCode;
 
-@protocol HPProcedure
+@protocol HPProcedure <NSObject>
 
 @property (nullable, readonly) NSArray<id<HPBasicBlock>> *basicBlocks;
 
@@ -85,9 +85,9 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnullability-completeness"
-- (nullable PseudoCode *)completePseudoCode;
-- (id)completePseudoCodeWithCancelationBlock:(id /* block */)a0 andOptions:(unsigned long long)a1;
-- (id)signaturePseudoCode;
+- (nullable id<HPPseudoCode>)completePseudoCode;
+- (nullable id<HPPseudoCode>)completePseudoCodeWithCancelationBlock:(id /* block */)a0 andOptions:(unsigned long long)a1;
+- (nullable id<HPPseudoCode>)signaturePseudoCode;
 - (BOOL)isNoReturn;
 - (id)allLocalVariables;
 - (id)formattedProcedureHeader;

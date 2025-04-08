@@ -72,7 +72,7 @@
 
 - (nullable NSArray<id<HPASMLine>> *)stringsForVirtualAddress:(Address)address includingDecorations:(BOOL)includingDecorations inlineComments:(BOOL)inlineComments addressField:(BOOL)addressField hexColumn:(BOOL)hexColumn compactMode:(BOOL)compactMode;
 - (NSUInteger)getByteLengthAtVirtualAddress:(Address)address;
-- (void)setComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(unsigned char)reason;
-- (void)appendComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(unsigned char)reason;
-- (void)setInlineComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(unsigned char)reason;
+- (void)setComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(CommentCreationReason)reason;
+- (void)appendComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(CommentCreationReason)reason;
+- (void)setInlineComment:(nonnull NSString *)comment atVirtualAddress:(Address)virtualAddress reason:(CommentCreationReason)reason;
 @end

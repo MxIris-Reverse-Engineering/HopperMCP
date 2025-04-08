@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92C95442DA53FFB00A0B61F /* HopperPlus in Frameworks */ = {isa = PBXBuildFile; productRef = E92C95432DA53FFB00A0B61F /* HopperPlus */; };
 		E9530A9C2D9D944C008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530A9B2D9D944C008FBC7F /* Hopper */; };
 		E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B0B2D9D9B8F008FBC7F /* Hopper */; };
 		E9530B952D9ED803008FBC7F /* InjectionService in Frameworks */ = {isa = PBXBuildFile; productRef = E9530B942D9ED803008FBC7F /* InjectionService */; };
@@ -206,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92C95442DA53FFB00A0B61F /* HopperPlus in Frameworks */,
 				E984DC3D2DA2D635007E689A /* Dynamic in Frameworks */,
 				E9D6229E2DA0CF9200D456E6 /* HopperServiceInterface in Frameworks */,
 				E9530B0C2D9D9B8F008FBC7F /* Hopper in Frameworks */,
@@ -380,6 +382,7 @@
 				E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */,
 				E989D1F42DA1201400A1BD18 /* HopperMCPShared */,
 				E984DC3C2DA2D635007E689A /* Dynamic */,
+				E92C95432DA53FFB00A0B61F /* HopperPlus */,
 			);
 			productName = HopperMCPCore;
 			productReference = E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */;
@@ -1219,6 +1222,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E92C95432DA53FFB00A0B61F /* HopperPlus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;
+			productName = HopperPlus;
+		};
 		E9530A9B2D9D944C008FBC7F /* Hopper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9530A122D9C33C7008FBC7F /* XCLocalSwiftPackageReference "Hopper" */;

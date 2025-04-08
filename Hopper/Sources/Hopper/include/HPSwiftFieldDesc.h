@@ -14,6 +14,6 @@
 @property (copy, nonatomic) NSString *type;
 @property (copy, nonatomic) NSString *name;
 
-- (id)initWithType:(id)a0 name:(id)a1 andFlags:(unsigned int)a2;
+- (instancetype)initWithType:(NSString *)type name:(NSString *)name andFlags:(unsigned int)flags;
 
 @end

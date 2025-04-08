@@ -50,6 +50,11 @@
     if (SwiftClassDescClass && !class_conformsToProtocol(SwiftClassDescClass, @protocol(HPSwiftClassDesc))) {
         class_addProtocol(SwiftClassDescClass, @protocol(HPSwiftClassDesc));
     }
+    
+    Class PseudoCodeClass = NSClassFromString(@"PseudoCode");
+    if (PseudoCodeClass && !class_conformsToProtocol(PseudoCodeClass, @protocol(HPPseudoCode))) {
+        class_addProtocol(PseudoCodeClass, @protocol(HPPseudoCode));
+    }
 }
 
 @end

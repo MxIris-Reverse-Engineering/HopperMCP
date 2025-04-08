@@ -83,6 +83,13 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
     @objc func stopPluginServer(_ sender: Any?) {}
 
     @objc func reloadToolPlugins(_ sender: Any?) {
+        if let loadedPlugins = Dynamic.ToolFactory.loadedPlugins.asArray as? [any HopperTool] {
+            for loadedPlugin in loadedPlugins {
+                if Bundle(for: type(of: loadedPlugin)).unload() {
+                    services.logMessage("Unloaded \(type(of: loadedPlugin))")
+                }
+            }
+        }
         Dynamic.ToolFactory.loadPluginsIncludingUserPlugins(true)
     }
     

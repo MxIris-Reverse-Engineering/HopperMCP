@@ -3,10 +3,14 @@ import AppKit
 import HelperService
 import HopperServiceInterface
 @preconcurrency import Hopper
+@preconcurrency import HopperPlus
 
 public final class HopperService: HelperService {
     public let services: HPHopperServices
 
+    private var addressByName: [String: Address] = [:]
+    
+    
     public init(services: HPHopperServices) {
         self.services = services
     }
@@ -16,7 +20,7 @@ public final class HopperService: HelperService {
         case invalidDocument
         case invalidFile
         case invalidProcedure
-        
+
         public var errorDescription: String? {
             switch self {
             case .invalidService:
@@ -77,7 +81,7 @@ public final class HopperService: HelperService {
             }
             return .result(results.joined(separator: "\n"))
         }
-        
+
         handler.setMessageHandler { [weak self] (request: CurrentAssemblyByDocumentRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await NSDocumentController.shared.document(for: request.documentName) as? HPDocument else {
@@ -97,7 +101,7 @@ public final class HopperService: HelperService {
             let result = try await self.currentPseudocode(by: document)
             return .result(result)
         }
-        
+
         handler.setMessageHandler { [weak self] (request: CurrentAssemblyRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await NSDocumentController.shared.currentDocument as? HPDocument else {
@@ -120,61 +124,6 @@ public final class HopperService: HelperService {
     }
 
     public func run() async throws {}
-}
-
-extension HPProcedure {
-    func completeAssemblyCode(showAddress: Bool = true, showHex: Bool = false) -> String? {
-        var output = String()
-
-        guard let basicBlocks = basicBlocks else { return nil }
-        guard let file = segment().file else { return nil }
-        let sortedBlocks = basicBlocks.sorted { block1, block2 in
-            let addr1 = block1.from()
-            let addr2 = block2.from()
-            return addr1 < addr2
-        }
-
-        let indent = "        "
-
-        for block in sortedBlocks {
-            let basicBlock = block
-            var currentAddress = basicBlock.from()
-            let endAddress = basicBlock.to()
-
-            guard let segment = file.segment(forVirtualAddress: currentAddress) else { continue }
-
-            if currentAddress <= endAddress {
-                while currentAddress <= endAddress {
-                    guard let strings = segment.strings(
-                        forVirtualAddress: currentAddress,
-                        includingDecorations: true,
-                        inlineComments: true,
-                        addressField: showAddress,
-                        hexColumn: showHex,
-                        compactMode: false
-                    ) else {
-                        continue
-                    }
-
-                    for line in strings {
-                        if !showAddress, !showHex, !line.hasAttribute("ASMLineNameDeclaration") {
-                            output.append(indent)
-                        }
-
-                        output.append(line.string())
-
-                        output.append("\n")
-                    }
-
-                    let byteLength = segment.getByteLength(atVirtualAddress: currentAddress)
-                    let increment = byteLength <= 1 ? 1 : byteLength
-                    currentAddress += .init(increment)
-                }
-            }
-        }
-
-        return output
-    }
 }
 
 extension NSDocumentController {

@@ -38,7 +38,7 @@
 // Tool
 #import "HopperTool.h"
 
-#import "PseudoCode.h"
+#import "HPPseudoCode.h"
 
 #import "HPTypeDesc.h"
 #import "HPTypeEnumField.h"
