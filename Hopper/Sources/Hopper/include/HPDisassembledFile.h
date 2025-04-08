@@ -22,6 +22,8 @@
 @protocol HPTag;
 @protocol HPASMLine;
 @protocol HPTypeDesc;
+@protocol HPSwiftTypeDesc;
+@protocol HPSwiftProtocolDesc;
 
 typedef void (^FileLoadingCallbackInfo)(NSString * _Nonnull desc, float progress);
 
@@ -333,8 +335,8 @@ typedef void (^FileLoadingCallbackInfo)(NSString * _Nonnull desc, float progress
 - (id)typeWithCName:(id)a0;
 
 - (nullable NSArray<id<HPSection>> *)sectionsNamed:(NSString *)name;
-- (NSArray *)buildSwiftTypeList:(id<HPSection>)section;
-- (NSArray *)buildSwiftProtocolList:(id<HPSection>)section;
+- (NSArray<id<HPSwiftTypeDesc>> *)buildSwiftTypeList:(id<HPSection>)section;
+- (NSArray<id<HPSwiftProtocolDesc>> *)buildSwiftProtocolList:(id<HPSection>)section;
 #pragma clang diagnostic pop
 
 @end

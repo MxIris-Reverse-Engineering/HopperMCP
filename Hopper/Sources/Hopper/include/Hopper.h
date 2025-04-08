@@ -48,4 +48,8 @@
 #import "HPCallDestination.h"
 #import "HPMethodArgument.h"
 #import "HPMethodSignature.h"
-//#import "PluginsHook.h"
+
+
+#import "HPSwiftFieldDesc.h"
+#import "HPSwiftTypeDesc.h"
+#import "HPSwiftProtocolDesc.h"

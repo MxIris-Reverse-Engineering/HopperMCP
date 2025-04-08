@@ -11,10 +11,18 @@ let package = Package(
             name: "Hopper",
             targets: ["Hopper"]
         ),
+        .library(
+            name: "HopperPlus",
+            targets: ["HopperPlus"]
+        ),
     ],
     targets: [
         .target(
             name: "Hopper"
+        ),
+        .target(
+            name: "HopperPlus",
+            dependencies: ["Hopper"]
         ),
     ]
 )
