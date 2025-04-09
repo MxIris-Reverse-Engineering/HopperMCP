@@ -26,6 +26,7 @@
 		E989D1F72DA1201900A1BD18 /* HopperMCPShared in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1F62DA1201900A1BD18 /* HopperMCPShared */; };
 		E989D1F92DA1201E00A1BD18 /* HopperMCPShared in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1F82DA1201E00A1BD18 /* HopperMCPShared */; };
 		E989D1FD2DA13E7C00A1BD18 /* RunningApplicationKit in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */; };
+		E9CAB9432DA65A780083729D /* MacControlCenterUI in Frameworks */ = {isa = PBXBuildFile; productRef = E9CAB9422DA65A780083729D /* MacControlCenterUI */; };
 		E9D6225A2DA0484B00D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622592DA0484B00D456E6 /* HelperServer */; };
 		E9D6229A2DA0CE5800D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622992DA0CE5800D456E6 /* HelperServer */; };
 		E9D6229E2DA0CF9200D456E6 /* HopperServiceInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */; };
@@ -238,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E989D1F32DA1200C00A1BD18 /* HopperMCPShared in Frameworks */,
+				E9CAB9432DA65A780083729D /* MacControlCenterUI in Frameworks */,
 				E9530B9F2D9ED9C0008FBC7F /* InjectionService in Frameworks */,
 				E989D1FD2DA13E7C00A1BD18 /* RunningApplicationKit in Frameworks */,
 				E9530B9D2D9ED9C0008FBC7F /* HelperClient in Frameworks */,
@@ -461,6 +463,7 @@
 				E9530B9E2D9ED9C0008FBC7F /* InjectionService */,
 				E989D1F22DA1200C00A1BD18 /* HopperMCPShared */,
 				E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */,
+				E9CAB9422DA65A780083729D /* MacControlCenterUI */,
 			);
 			productName = HopperMCPApp;
 			productReference = E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */;
@@ -513,6 +516,7 @@
 				E989D1C52DA1046100A1BD18 /* XCRemoteSwiftPackageReference "mcp-swift-sdk" */,
 				E989D1FB2DA13E7C00A1BD18 /* XCLocalSwiftPackageReference "../../Library/macOS/RunningApplicationKit" */,
 				E984DC3B2DA2D635007E689A /* XCRemoteSwiftPackageReference "Dynamic" */,
+				E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E985A9E52D9C04E5005A573C /* Products */;
@@ -1211,6 +1215,14 @@
 				kind = branch;
 			};
 		};
+		E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MacControlCenterUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 		E9FAA6202D9E72C700E9AC9D /* XCRemoteSwiftPackageReference "MachInjector" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MxIris-Reverse-Engineering/MachInjector";
@@ -1281,6 +1293,11 @@
 		E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RunningApplicationKit;
+		};
+		E9CAB9422DA65A780083729D /* MacControlCenterUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */;
+			productName = MacControlCenterUI;
 		};
 		E9D622592DA0484B00D456E6 /* HelperServer */ = {
 			isa = XCSwiftPackageProductDependency;

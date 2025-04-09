@@ -15,7 +15,7 @@ import OSLog
 import RunningApplicationKit
 
 @Observable
-final class ViewModel {
+final class MainViewModel {
     private static let pluginSearchPath = "~/Library/Application Support/Hopper/PlugIns/v4/Tools"
 
     private static let pluginURL = URL(filePath: pluginSearchPath).appending(path: "HopperMCPPlugin.hopperTool")

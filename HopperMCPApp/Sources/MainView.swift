@@ -8,22 +8,8 @@
 import AppKit
 import SwiftUI
 
-class ViewController: NSHostingController<ContentView> {
-    let viewModel = ViewModel()
-
-    init() {
-        super.init(rootView: .init(viewModel: viewModel))
-        sizingOptions = .preferredContentSize
-    }
-
-    @available(*, unavailable)
-    @MainActor @preconcurrency dynamic required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-struct ContentView: View {
-    var viewModel: ViewModel
+struct MainView: View {
+    var viewModel: MainViewModel = .init()
 
     var body: some View {
         Image(nsImage: NSApplication.shared.applicationIconImage)
@@ -77,12 +63,12 @@ struct ContentView: View {
                         Text("Inject")
                     }
                 }
-                
+
                 HStack {
                     Text("Copy MCP Server Path")
-                    
+
                     Spacer()
-                    
+
                     Button {
                         if let mcpServerPath = viewModel.mcpServerURL?.path {
                             let pasteboard = NSPasteboard.general
@@ -102,5 +88,5 @@ struct ContentView: View {
 
 @available(macOS 14.0, *)
 #Preview {
-    ContentView(viewModel: .init())
+    MainView()
 }

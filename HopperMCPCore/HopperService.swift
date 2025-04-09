@@ -121,6 +121,14 @@ public final class HopperService: HelperService {
             let result = try await self.currentPseudocode(by: document)
             return .result(result)
         }
+        
+        handler.setMessageHandler { [weak self] (request: AddCommentRequest) in
+            guard let self else { throw Error.invalidService }
+            
+            
+            
+            return .result("Success")
+        }
     }
 
     public func run() async throws {}
