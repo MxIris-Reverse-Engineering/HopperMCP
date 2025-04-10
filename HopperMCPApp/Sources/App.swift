@@ -12,6 +12,7 @@ struct HopperMCPApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
+        .defaultSize(.init(width: 400, height: 300))
         .defaultPosition(.center)
         
         MenuBarExtra("HopperMCPApp", systemImage: "message.fill") {

@@ -106,13 +106,14 @@ class SwiftSampleTool: NSObject, HopperTool {
     }
 
     @objc func fct3(_ sender: Any?) {
-        if let doc = (NSDocumentController.shared.documents.last as? HPDocument), let file = doc.disassembledFile() {
-            for (index, name) in file.allNames().enumerated() {
-                services.logMessage("----------------")
-                services.logMessage("Name: \(name)")
-                services.logMessage("Address: \(file.addressOfName(at: .init(index)))")
-            }
-        }
+        services.logMessage("\(NSDocumentController.shared.currentDocument)")
+//        if let doc = (NSDocumentController.shared.documents.last as? HPDocument), let file = doc.disassembledFile() {
+//            for (index, name) in file.allNames().enumerated() {
+//                services.logMessage("----------------")
+//                services.logMessage("Name: \(name)")
+//                services.logMessage("Address: \(file.addressOfName(at: .init(index)))")
+//            }
+//        }
     }
 
     deinit {

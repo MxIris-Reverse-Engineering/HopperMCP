@@ -82,7 +82,7 @@ struct MainView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(minWidth: 400)
+//        .frame(minWidth: 400)
     }
 }
 

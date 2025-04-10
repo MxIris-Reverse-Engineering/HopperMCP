@@ -9,7 +9,7 @@ import Foundation
 import Hopper
 
 extension HPDisassembledFile {
-    func allSwiftTypeDescs() -> [any HPSwiftTypeDesc] {
+    public func allSwiftTypeDescs() -> [any HPSwiftTypeDesc] {
         guard let sections = sectionsNamed("__swift5_types") else { return [] }
         var results = [any HPSwiftTypeDesc]()
         for section in sections {
@@ -20,7 +20,7 @@ extension HPDisassembledFile {
         return results
     }
     
-    func allSwiftProtocolDescs() -> [any HPSwiftProtocolDesc] {
+    public func allSwiftProtocolDescs() -> [any HPSwiftProtocolDesc] {
         guard let sections = sectionsNamed("__swift5_protos") else { return [] }
         var results = [any HPSwiftProtocolDesc]()
         for section in sections {

@@ -3,6 +3,7 @@ import HelperService
 import HelperCommunication
 import JSONSchemaBuilder
 import MCPInterface
+import MemberwiseInit
 
 public struct ToolResponse: Codable {
     public let results: [String]
@@ -20,142 +21,118 @@ public protocol ToolRequest: HelperCommunication.Request, Schemable where Self.S
     static var name: String { get }
 }
 
+
+public protocol ToolRequestWithDocument: ToolRequest {
+    var documentName: String? { get }
+}
+
 extension ToolRequest {
     public static var identifier: String { "com.JH.HopperService.\(String(describing: Self.self))" }
 }
 
 @Schemable
+@MemberwiseInit(.public)
 public struct CurrentAssemblyRequest: Codable, ToolRequest {
     public static var name: String { "Get current assembly" }
-    public init() {}
 }
 
 @Schemable
+@MemberwiseInit(.public)
 public struct CurrentPseudocodeRequest: Codable, ToolRequest {
     public static var name: String { "Get current pseudocode" }
-    public init() {}
 }
 
 @Schemable
+@MemberwiseInit(.public)
 public struct CurrentAssemblyByDocumentRequest: Codable, ToolRequest {
     public static var name: String { "Get current assembly by document" }
     public let documentName: String
-
-    public init(documentName: String) {
-        self.documentName = documentName
-    }
 }
 
 @Schemable
+@MemberwiseInit(.public)
 public struct CurrentPseudocodeByDocumentRequest: Codable, ToolRequest {
     public static var name: String { "Get current pseudocode by document" }
     public let documentName: String
-
-    public init(documentName: String) {
-        self.documentName = documentName
-    }
 }
 
 @Schemable
+@MemberwiseInit(.public)
 public struct ListDocumentsRequest: Codable, ToolRequest {
     public static var name: String { "List documents" }
-    public init() {}
 }
 
 @Schemable
-public struct AddCommentRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct AddCommentRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Add comment" }
+    public let documentName: String?
     public let comment: String
     public let address: Int
-
-    public init(comment: String, address: Int) {
-        self.comment = comment
-        self.address = address
-    }
 }
 
 @Schemable
-public struct AddInlineCommentRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct AddInlineCommentRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Add inline comment" }
+    public let documentName: String?
     public let comment: String
     public let address: Int
-
-    public init(comment: String, address: Int) {
-        self.comment = comment
-        self.address = address
-    }
 }
 
-
 @Schemable
-public struct RenameFunctionByAddressRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct RenameFunctionByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Rename function by address" }
+    public let documentName: String?
     public let name: String
     public let address: Int
-
-    public init(name: String, address: Int) {
-        self.name = name
-        self.address = address
-    }
 }
 
 @Schemable
-public struct AssemblyByAddressRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct AssemblyByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get assembly by address" }
+    public let documentName: String?
     public let address: Int
-
-    public init(address: Int) {
-        self.address = address
-    }
 }
 
 @Schemable
-public struct PseudocodeByAddressRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct PseudocodeByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get pseudocode by address" }
+    public let documentName: String?
     public let address: Int
-
-    public init(address: Int) {
-        self.address = address
-    }
 }
 
 @Schemable
-public struct AssemblyByNameRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct AssemblyByNameRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get assembly by name" }
+    public let documentName: String?
     public let name: String
-
-    public init(name: String) {
-        self.name = name
-    }
 }
 
 @Schemable
-public struct PseudocodeByNameRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct PseudocodeByNameRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get pseudocode by name" }
+    public let documentName: String?
     public let name: String
-
-    public init(name: String) {
-        self.name = name
-    }
 }
 
 @Schemable
-public struct SwiftTypeDescriptionRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct SwiftTypeDescriptionRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get Swift type description" }
+    public let documentName: String?
     public let typeName: String
-
-    public init(typeName: String) {
-        self.typeName = typeName
-    }
 }
 
 @Schemable
-public struct SwiftProtocolDescriptionRequest: Codable, ToolRequest {
+@MemberwiseInit(.public)
+public struct SwiftProtocolDescriptionRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get Swift protocol description" }
+    public let documentName: String?
     public let protocolName: String
-
-    public init(protocolName: String) {
-        self.protocolName = protocolName
-    }
 }
-
