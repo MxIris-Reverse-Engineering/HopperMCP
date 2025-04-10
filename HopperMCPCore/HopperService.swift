@@ -9,8 +9,7 @@ public final class HopperService: HelperService {
     public let services: HPHopperServices
 
     private var addressByName: [String: Address] = [:]
-    
-    
+
     public init(services: HPHopperServices) {
         self.services = services
     }
@@ -121,14 +120,21 @@ public final class HopperService: HelperService {
             let result = try await self.currentPseudocode(by: document)
             return .result(result)
         }
-        
+
         handler.setMessageHandler { [weak self] (request: AddCommentRequest) in
             guard let self else { throw Error.invalidService }
-            
             guard let document = services.currentDocument() else { throw Error.invalidDocument }
             guard let file = document.disassembledFile() else { throw Error.invalidFile }
             file.setComment(request.comment, atVirtualAddress: request.address.asAddress, reason: .CCReason_Automatic)
-            
+
+            return .result("Success")
+        }
+
+        handler.setMessageHandler { [weak self] (request: AddInlineCommentRequest) in
+            guard let self else { throw Error.invalidService }
+            guard let document = services.currentDocument() else { throw Error.invalidDocument }
+            guard let file = document.disassembledFile() else { throw Error.invalidFile }
+            file.setInlineComment(request.comment, atVirtualAddress: request.address.asAddress, reason: .CCReason_Automatic)
             return .result("Success")
         }
     }

@@ -35,7 +35,7 @@ for serverInfo in serverInfos {
                     makeTool(for: CurrentPseudocodeByDocumentRequest.self),
                     makeTool(for: AddCommentRequest.self),
                     makeTool(for: AddInlineCommentRequest.self),
-                    makeTool(for: RenameFunctionByAddressRequest.self),
+//                    makeTool(for: RenameFunctionByAddressRequest.self),
                     makeTool(for: AssemblyByNameRequest.self),
                     makeTool(for: AssemblyByAddressRequest.self),
                     makeTool(for: PseudocodeByNameRequest.self),
