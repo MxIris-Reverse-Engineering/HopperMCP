@@ -9,7 +9,7 @@ Please note that `HopperMCP` is currently in early development. The functionalit
 
 Due to Hopper's closed environment, it doesn't allow plugins to link to any third-party libraries, only permitting the use of basic dependencies like `Foundation` and `AppKit`. Therefore, we need to inject code into Hopper to enable loading of any type of plugin.
 
-Hopper's SDK is also very rudimentary, with no public interfaces to obtain disassembled or decompiled code. We've reverse-engineered Hopper and call its private interfaces to access this essential information. These basic interfaces are generally stable, but there's no guarantee that the author won't modify them in future versions.
+Hopper's SDK is also very simple, with no public interfaces to obtain disassembled or decompiled code. We've reverse-engineered Hopper and call its private interfaces to access this essential information. These basic interfaces are generally stable, but there's no guarantee that the author won't modify them in future versions.
 
 Since code injection is required, you must disable **SIP** (System Integrity Protection) to use `HopperMCP`.
 
@@ -36,7 +36,7 @@ About 3 seconds after Hopper launches, you'll see a `Tool Plugin` menu appear in
 
 4. Start the `HopperMCP` plugin service
 
-5. Copy the `Hopper MCP Server` JSON (option 3 in the `HopperMCPApp` main interface) and enter this JSON of your MCP client
+5. Copy the `Hopper MCP Server` JSON (option 3 in the `HopperMCPApp` main interface) and input this JSON into your MCP client
 
 Now you can use `HopperMCP`!
 
