@@ -44,6 +44,10 @@
 
     Class PluginAnalyzerClass = NSClassFromString(@"PluginAnalyzer");
 
+    if (!PluginAnalyzerClass) {
+        return;
+    }
+    
     method_exchangeImplementations(
                                    class_getClassMethod(PluginAnalyzerClass, @selector(pluginIsSafe:error:)),
                                    class_getClassMethod([self class], @selector(pluginIsSafe:error:))

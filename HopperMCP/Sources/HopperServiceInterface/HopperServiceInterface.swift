@@ -68,7 +68,7 @@ public struct AddCommentRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Add comment" }
     public let documentName: String?
     public let comment: String
-    public let address: Int
+    public let address: String
 }
 
 @Schemable
@@ -77,7 +77,7 @@ public struct AddInlineCommentRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Add inline comment" }
     public let documentName: String?
     public let comment: String
-    public let address: Int
+    public let address: String
 }
 
 @Schemable
@@ -86,7 +86,7 @@ public struct RenameFunctionByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Rename function by address" }
     public let documentName: String?
     public let name: String
-    public let address: Int
+    public let address: String
 }
 
 @Schemable
@@ -94,7 +94,7 @@ public struct RenameFunctionByAddressRequest: Codable, ToolRequestWithDocument {
 public struct AssemblyByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get assembly by address" }
     public let documentName: String?
-    public let address: Int
+    public let address: String
 }
 
 @Schemable
@@ -102,7 +102,7 @@ public struct AssemblyByAddressRequest: Codable, ToolRequestWithDocument {
 public struct PseudocodeByAddressRequest: Codable, ToolRequestWithDocument {
     public static var name: String { "Get pseudocode by address" }
     public let documentName: String?
-    public let address: Int
+    public let address: String
 }
 
 @Schemable

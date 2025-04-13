@@ -4,7 +4,9 @@ import Foundation
 
 @objc(HopperMCPMainPlugin)
 class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
-    let services: HPHopperServices
+    let rawServices: HPHopperServices
+
+    var hopperService: HopperService?
 
     var server: HelperServer?
 
@@ -17,7 +19,7 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
     }
 
     func pluginUUID() -> HPHopperUUID {
-        return services.uuid(with: "b2bbe202-3add-4f70-99c2-3682778bb078")
+        return rawServices.uuid(with: "b2bbe202-3add-4f70-99c2-3682778bb078")
     }
 
     func pluginName() -> String {
@@ -45,7 +47,7 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
     }
 
     required init(hopperServices services: HPHopperServices) {
-        self.services = services
+        self.rawServices = services
         super.init()
     }
 
@@ -62,20 +64,26 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
             [
                 HPM_TITLE: "Reload Tool Plugins",
                 HPM_SELECTOR: NSStringFromSelector(#selector(reloadToolPlugins(_:))),
-            ]
+            ],
+            [
+                HPM_TITLE: "Notify Document Loaded",
+                HPM_SELECTOR: NSStringFromSelector(#selector(notifyDocumentDidLoad(_:))),
+            ],
         ]
     }
 
     @objc func startPluginServer(_ sender: Any?) {
         Task { @MainActor in
             do {
-                let server = try await HelperServer(serverType: .plain(name: "Hopper", identifier: "com.JH.HopperMCP.Server"), services: [HopperService(services: services)])
+                let hopperService = HopperService(services: rawServices)
+                let server = try await HelperServer(serverType: .plain(name: "Hopper", identifier: "com.JH.HopperMCP.Server"), services: [hopperService])
                 await server.activate()
                 try await server.connectToTool(machServiceName: "com.JH.hoppermcpd", isPrivilegedHelperTool: true)
-                services.logMessage("Connected to helper tool")
+                rawServices.logMessage("Connected to helper tool")
                 self.server = server
+                self.hopperService = hopperService
             } catch {
-                services.logMessage("\(error)")
+                rawServices.logMessage("\(error)")
             }
         }
     }
@@ -86,14 +94,21 @@ class MainPlugin: NSObject, HopperTool, @unchecked Sendable {
         if let loadedPlugins = Dynamic.ToolFactory.loadedPlugins.asArray as? [any HopperTool] {
             for loadedPlugin in loadedPlugins {
                 if Bundle(for: type(of: loadedPlugin)).unload() {
-                    services.logMessage("Unloaded \(type(of: loadedPlugin))")
+                    rawServices.logMessage("Unloaded \(type(of: loadedPlugin))")
                 }
             }
         }
         Dynamic.ToolFactory.loadPluginsIncludingUserPlugins(true)
     }
-    
+
+    @objc func notifyDocumentDidLoad(_ sender: Any?) {
+        guard let hopperService else { return }
+        Task {
+            try await hopperService.notifyDocumentDidLoad()
+        }
+    }
+
     deinit {
-        services.logMessage("Deinit \(self)")
+        rawServices.logMessage("Deinit \(self)")
     }
 }

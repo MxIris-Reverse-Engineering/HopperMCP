@@ -26,7 +26,7 @@
 		E989D1F72DA1201900A1BD18 /* HopperMCPShared in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1F62DA1201900A1BD18 /* HopperMCPShared */; };
 		E989D1F92DA1201E00A1BD18 /* HopperMCPShared in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1F82DA1201E00A1BD18 /* HopperMCPShared */; };
 		E989D1FD2DA13E7C00A1BD18 /* RunningApplicationKit in Frameworks */ = {isa = PBXBuildFile; productRef = E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */; };
-		E9CAB9432DA65A780083729D /* MacControlCenterUI in Frameworks */ = {isa = PBXBuildFile; productRef = E9CAB9422DA65A780083729D /* MacControlCenterUI */; };
+		E9B88D962DAB8DD0007EB602 /* StatusItemController in Frameworks */ = {isa = PBXBuildFile; productRef = E9B88D952DAB8DD0007EB602 /* StatusItemController */; };
 		E9D6225A2DA0484B00D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622592DA0484B00D456E6 /* HelperServer */; };
 		E9D6229A2DA0CE5800D456E6 /* HelperServer in Frameworks */ = {isa = PBXBuildFile; productRef = E9D622992DA0CE5800D456E6 /* HelperServer */; };
 		E9D6229E2DA0CF9200D456E6 /* HopperServiceInterface in Frameworks */ = {isa = PBXBuildFile; productRef = E9D6229D2DA0CF9200D456E6 /* HopperServiceInterface */; };
@@ -114,7 +114,7 @@
 		E984DC002DA2C740007E689A /* SampleTool.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SampleTool.xcodeproj; path = HopperPluginDemo/Samples/SampleTool/SampleTool.xcodeproj; sourceTree = "<group>"; };
 		E9D622962DA0CCCE00D456E6 /* HopperMCP */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HopperMCP; sourceTree = "<group>"; };
 		E9D78E702D9E77820001AA66 /* com.JH.hoppermcpd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.JH.hoppermcpd; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopperMCPApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FAA6042D9E721000E9AC9D /* HopperMCP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopperMCP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -135,6 +135,8 @@
 		E9530B9B2D9ED95E008FBC7F /* Exceptions for "HopperMCPApp" folder in "HopperMCPApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Configs/Debug.xcconfig,
+				Configs/Release.xcconfig,
 				Info.plist,
 			);
 			target = E9FAA6032D9E721000E9AC9D /* HopperMCPApp */;
@@ -239,10 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E989D1F32DA1200C00A1BD18 /* HopperMCPShared in Frameworks */,
-				E9CAB9432DA65A780083729D /* MacControlCenterUI in Frameworks */,
 				E9530B9F2D9ED9C0008FBC7F /* InjectionService in Frameworks */,
 				E989D1FD2DA13E7C00A1BD18 /* RunningApplicationKit in Frameworks */,
 				E9530B9D2D9ED9C0008FBC7F /* HelperClient in Frameworks */,
+				E9B88D962DAB8DD0007EB602 /* StatusItemController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +287,7 @@
 				E9530A0E2D9C3393008FBC7F /* HopperMCPPlugin.hopperTool */,
 				E9530A1B2D9C3440008FBC7F /* HopperMCPServer */,
 				E9530AE12D9D98F7008FBC7F /* HopperMCPCore.framework */,
-				E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */,
+				E9FAA6042D9E721000E9AC9D /* HopperMCP.app */,
 				E9D78E702D9E77820001AA66 /* com.JH.hoppermcpd */,
 				E9530B812D9ED31D008FBC7F /* HopperInjection.framework */,
 			);
@@ -463,10 +465,10 @@
 				E9530B9E2D9ED9C0008FBC7F /* InjectionService */,
 				E989D1F22DA1200C00A1BD18 /* HopperMCPShared */,
 				E989D1FC2DA13E7C00A1BD18 /* RunningApplicationKit */,
-				E9CAB9422DA65A780083729D /* MacControlCenterUI */,
+				E9B88D952DAB8DD0007EB602 /* StatusItemController */,
 			);
 			productName = HopperMCPApp;
-			productReference = E9FAA6042D9E721000E9AC9D /* HopperMCPApp.app */;
+			productReference = E9FAA6042D9E721000E9AC9D /* HopperMCP.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -516,7 +518,7 @@
 				E989D1C52DA1046100A1BD18 /* XCRemoteSwiftPackageReference "mcp-swift-sdk" */,
 				E989D1FB2DA13E7C00A1BD18 /* XCLocalSwiftPackageReference "../../Library/macOS/RunningApplicationKit" */,
 				E984DC3B2DA2D635007E689A /* XCRemoteSwiftPackageReference "Dynamic" */,
-				E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */,
+				E9B88D942DAB8DD0007EB602 /* XCRemoteSwiftPackageReference "StatusItemController" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E985A9E52D9C04E5005A573C /* Products */;
@@ -696,7 +698,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -732,7 +734,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = hopperTool;
@@ -747,6 +749,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -759,6 +762,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1026,7 +1030,7 @@
 		E9D78E752D9E77820001AA66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = E9D78E712D9E77820001AA66 /* com.JH.hoppermcpd */;
-			baseConfigurationReferenceRelativePath = Config.xcconfig;
+			baseConfigurationReferenceRelativePath = Debug.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
@@ -1044,7 +1048,7 @@
 		E9D78E762D9E77820001AA66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = E9D78E712D9E77820001AA66 /* com.JH.hoppermcpd */;
-			baseConfigurationReferenceRelativePath = Config.xcconfig;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
@@ -1061,10 +1065,14 @@
 		};
 		E9FAA6102D9E721100E9AC9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E9FAA6052D9E721000E9AC9D /* HopperMCPApp */;
+			baseConfigurationReferenceRelativePath = "New Folder/Debug.xcconfig";
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HopperMCPApp/HopperMCPApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: JieHui Lai (4ZZALU97YZ)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1081,7 +1089,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HopperMCP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1089,10 +1097,14 @@
 		};
 		E9FAA6112D9E721100E9AC9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E9FAA6052D9E721000E9AC9D /* HopperMCPApp */;
+			baseConfigurationReferenceRelativePath = "New Folder/Release.xcconfig";
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HopperMCPApp/HopperMCPApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: JieHui Lai (4ZZALU97YZ)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1109,7 +1121,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JH.HopperMCPApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HopperMCP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1215,12 +1227,12 @@
 				kind = branch;
 			};
 		};
-		E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */ = {
+		E9B88D942DAB8DD0007EB602 /* XCRemoteSwiftPackageReference "StatusItemController" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/orchetect/MacControlCenterUI";
+			repositoryURL = "https://github.com/hexedbits/StatusItemController";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
+				minimumVersion = 2.0.1;
 			};
 		};
 		E9FAA6202D9E72C700E9AC9D /* XCRemoteSwiftPackageReference "MachInjector" */ = {
@@ -1294,10 +1306,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = RunningApplicationKit;
 		};
-		E9CAB9422DA65A780083729D /* MacControlCenterUI */ = {
+		E9B88D952DAB8DD0007EB602 /* StatusItemController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E9CAB9412DA65A780083729D /* XCRemoteSwiftPackageReference "MacControlCenterUI" */;
-			productName = MacControlCenterUI;
+			package = E9B88D942DAB8DD0007EB602 /* XCRemoteSwiftPackageReference "StatusItemController" */;
+			productName = StatusItemController;
 		};
 		E9D622592DA0484B00D456E6 /* HelperServer */ = {
 			isa = XCSwiftPackageProductDependency;

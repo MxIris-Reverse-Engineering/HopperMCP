@@ -16,19 +16,17 @@ import RunningApplicationKit
 
 @Observable
 final class MainViewModel {
-    private static let pluginSearchPath = "~/Library/Application Support/Hopper/PlugIns/v4/Tools"
+    private static let pluginSearchURL = URL.applicationSupportDirectory.appending(component: "Hopper/PlugIns/v4/Tools")
 
-    private static let pluginURL = URL(filePath: pluginSearchPath).appending(path: "HopperMCPPlugin.hopperTool")
-    
-    public private(set) var isHelperInstalled: Bool = false
+    private static let pluginURL = pluginSearchURL.appending(component: "HopperMCPPlugin.hopperTool")
+
+    private static let logger = Logger(subsystem: "com.JH.HopperMCPApp", category: "ViewModel")
 
     public private(set) var isHelperConnected: Bool = false
-    
-    public var isPluginInstalled: Bool {
-        (try? FileManager.default.contentsOfDirectory(atPath: Self.pluginSearchPath))?.contains(where: { $0 == Self.pluginURL.path }) ?? false
-    }
 
     public private(set) var isHopperRunning: Bool = false
+
+    public private(set) var isPluginInstalled: Bool = false
 
     public var mcpServerURL: URL? {
         Bundle.main.url(forResource: "HopperMCPServer", withExtension: nil)
@@ -36,14 +34,11 @@ final class MainViewModel {
 
     private let helperClient = HelperClient()
 
-    private static var logger = Logger(subsystem: "com.JH.HopperMCPApp", category: "ViewModel")
-
     private var logger: Logger { Self.logger }
 
     private let runningApplicationObserver = RunningApplicationObserver(observeApplicationBundleID: HopperApplicationBundleIdentifier)
 
     public init() {
-        
         Task {
             do {
                 try await connectToHelper()
@@ -51,9 +46,10 @@ final class MainViewModel {
                 print(error)
             }
         }
-        
+
         Task {
-            isHopperRunning = NSWorkspace.shared.runningApplications.contains(bundleID: HopperApplicationBundleIdentifier)
+            self.isHopperRunning = NSWorkspace.shared.runningApplications.contains(bundleID: HopperApplicationBundleIdentifier)
+            
             await runningApplicationObserver.onLaunch { [weak self] in
                 guard let self, isHelperConnected else { return }
                 Task {
@@ -61,27 +57,33 @@ final class MainViewModel {
                     try await self.injectHopper()
                 }
             }
-            
-            await runningApplicationObserver.onTerminate {
-                
-            }
-            
+
+            await runningApplicationObserver.onTerminate {}
+
             await runningApplicationObserver.start()
         }
+        
+        isPluginInstalled = FileManager.default.fileExists(atPath: Self.pluginURL.path)
     }
 
     public func installHelper() async throws {
         try await helperClient.installTool(name: HopperMCPDaemonBundleIdentifier)
         try await connectToHelper()
     }
-    
+
     public nonisolated func installPlugin() async throws {
         guard let url = Bundle.main.url(forResource: "HopperMCPPlugin", withExtension: "hopperTool") else { return }
         let fileManager = FileManager.default
+        
+        if !fileManager.fileExists(atPath: Self.pluginSearchURL.path) {
+            try fileManager.createDirectory(at: Self.pluginSearchURL, withIntermediateDirectories: true)
+        }
+        
         if fileManager.fileExists(atPath: Self.pluginURL.path) {
             try fileManager.removeItem(at: Self.pluginURL)
         }
         try fileManager.copyItem(at: url, to: Self.pluginURL)
+        isPluginInstalled = FileManager.default.fileExists(atPath: Self.pluginURL.path)
     }
 
     public func connectToHelper() async throws {
@@ -104,5 +106,9 @@ final class MainViewModel {
         }
 
         try await helperClient.sendToTool(request: InjectApplicationRequest(pid: pid, dylibURL: dylibURL))
+    }
+    
+    public func revealPluginDirectoryInFinder() {
+        NSWorkspace.shared.activateFileViewerSelecting([Self.pluginSearchURL])
     }
 }

@@ -40,8 +40,8 @@ for serverInfo in serverInfos {
                     makeTool(for: AssemblyByAddressRequest.self),
                     makeTool(for: PseudocodeByNameRequest.self),
                     makeTool(for: PseudocodeByAddressRequest.self),
-                    makeTool(for: SwiftTypeDescriptionRequest.self),
-                    makeTool(for: SwiftProtocolDescriptionRequest.self),
+//                    makeTool(for: SwiftTypeDescriptionRequest.self),
+//                    makeTool(for: SwiftProtocolDescriptionRequest.self),
                 ]),
             transport: .stdio()
         )

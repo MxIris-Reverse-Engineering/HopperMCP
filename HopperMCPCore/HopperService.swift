@@ -13,8 +13,8 @@ public actor HopperService: HelperService {
     private actor DocumentCache {
         private(set) weak var document: (any HPDocument)?
         private(set) var addressByName: [String: Address] = [:]
-        private(set) var swiftTypeDescByName: [String: any HPSwiftTypeDesc] = [:]
-        private(set) var swiftProtocolDescByName: [String: any HPSwiftProtocolDesc] = [:]
+//        private(set) var swiftTypeDescByName: [String: any HPSwiftTypeDesc] = [:]
+//        private(set) var swiftProtocolDescByName: [String: any HPSwiftProtocolDesc] = [:]
 
         init(document: any HPDocument) {
             self.document = document
@@ -26,12 +26,12 @@ public actor HopperService: HelperService {
             for (index, name) in file.allNames().enumerated() {
                 addressByName[name] = file.addressOfName(at: .init(index))
             }
-            for typeDesc in file.allSwiftTypeDescs() {
-                swiftTypeDescByName[typeDesc.name] = typeDesc
-            }
-            for protocolDesc in file.allSwiftProtocolDescs() {
-                swiftProtocolDescByName[protocolDesc.name] = protocolDesc
-            }
+//            for typeDesc in file.allSwiftTypeDescs() {
+//                swiftTypeDescByName[typeDesc.name] = typeDesc
+//            }
+//            for protocolDesc in file.allSwiftProtocolDescs() {
+//                swiftProtocolDescByName[protocolDesc.name] = protocolDesc
+//            }
         }
     }
 
@@ -44,6 +44,10 @@ public actor HopperService: HelperService {
         case invalidDocument
         case invalidFile
         case invalidProcedure
+        case invalidName
+        case invalidSwiftType
+        case invalidSwiftProtocol
+        case invalidAddress
 
         public var errorDescription: String? {
             switch self {
@@ -55,6 +59,14 @@ public actor HopperService: HelperService {
                 return "Invalid file"
             case .invalidProcedure:
                 return "Invalid procedure"
+            case .invalidName:
+                return "Invalid name"
+            case .invalidSwiftType:
+                return "Invalid Swift type"
+            case .invalidSwiftProtocol:
+                return "Invalid Swift protocol"
+            case .invalidAddress:
+                return "Invalid address"
             }
         }
     }
@@ -114,7 +126,9 @@ public actor HopperService: HelperService {
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
             guard let file = document.disassembledFile() else { throw Error.invalidFile }
-            file.setComment(request.comment, atVirtualAddress: request.address.asAddress, reason: .CCReason_Automatic)
+            guard let address = request.address.asAddress else { throw Error.invalidAddress }
+            file.setComment(request.comment, atVirtualAddress: address, reason: .CCReason_Automatic)
+            document.updateUI()
             return .result("Success")
         }
 
@@ -122,44 +136,87 @@ public actor HopperService: HelperService {
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
             guard let file = document.disassembledFile() else { throw Error.invalidFile }
-            file.setInlineComment(request.comment, atVirtualAddress: request.address.asAddress, reason: .CCReason_Automatic)
+            guard let address = request.address.asAddress else { throw Error.invalidAddress }
+            file.setInlineComment(request.comment, atVirtualAddress: address, reason: .CCReason_Automatic)
+            document.updateUI()
             return .result("Success")
         }
 
         handler.setMessageHandler { [weak self] (request: AssemblyByAddressRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
-            let result = try await assembly(by: document, at: request.address.asAddress)
+            guard let address = request.address.asAddress else { throw Error.invalidAddress }
+            let result = try await assembly(by: document, at: address)
             return .result(result)
         }
 
         handler.setMessageHandler { [weak self] (request: PseudocodeByAddressRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
-            let result = try await pseudocode(by: document, at: request.address.asAddress)
+            guard let address = request.address.asAddress else { throw Error.invalidAddress }
+            let result = try await pseudocode(by: document, at: address)
             return .result(result)
         }
 
         handler.setMessageHandler { [weak self] (request: AssemblyByNameRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
-            guard let file = document.disassembledFile() else { throw Error.invalidFile }
-            guard let addressIndex = file.allNames().firstIndex(where: { $0 == request.name }) else { throw Error.invalidFile }
-            let result = try await assembly(by: document, at: file.addressOfName(at: .init(addressIndex)))
+            let documentCache = await documentCache(for: document)
+            guard let address = await documentCache.addressByName[request.name] else { throw Error.invalidName }
+            let result = try await assembly(by: document, at: address)
             return .result(result)
         }
 
         handler.setMessageHandler { [weak self] (request: PseudocodeByNameRequest) in
             guard let self else { throw Error.invalidService }
             guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
-            guard let file = document.disassembledFile() else { throw Error.invalidFile }
-            guard let addressIndex = file.allNames().firstIndex(where: { $0 == request.name }) else { throw Error.invalidFile }
-            let result = try await pseudocode(by: document, at: file.addressOfName(at: .init(addressIndex)))
+            let documentCache = await documentCache(for: document)
+            guard let address = await documentCache.addressByName[request.name] else { throw Error.invalidName }
+            let result = try await pseudocode(by: document, at: address)
             return .result(result)
         }
+        
+//        handler.setMessageHandler { [weak self] (request: SwiftTypeDescriptionRequest) in
+//            guard let self else { throw Error.invalidService }
+//            guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
+//            let documentCache = await documentCache(for: document)
+//            guard let type = await documentCache.swiftTypeDescByName[request.typeName] else { throw Error.invalidSwiftType }
+//            return .result(type.description)
+//        }
+//
+//        handler.setMessageHandler { [weak self] (request: SwiftProtocolDescriptionRequest) in
+//            guard let self else { throw Error.invalidService }
+//            guard let document = await nameOrCurrentOrLastDocument(for: request) else { throw Error.invalidDocument }
+//            let documentCache = await documentCache(for: document)
+//            guard let type = await documentCache.swiftProtocolDescByName[request.protocolName] else { throw Error.invalidSwiftProtocol }
+//            return .result(type.description)
+//        }
+        
     }
 
-    private func nameOrCurrentOrLastDocument<Request: ToolRequestWithDocument>(for request: Request) async -> (any HPDocument)? {
+    public func notifyDocumentDidLoad() async throws {
+        guard let document = await NSDocumentController.shared.currentDocumentOrLastDocument else { return }
+        let documentCache = await documentCache(for: document)
+        await MainActor.run {
+            document.begin(toWait: "Building MCP Document Cache")
+        }
+        try await documentCache.buildCache()
+        await MainActor.run {
+            document.endWaiting()
+        }
+    }
+    
+    private func documentCache(for document: any HPDocument & NSDocument) async -> DocumentCache {
+        if let cache = await documentCacheByName[document.displayName] {
+            return cache
+        } else {
+            let cache = DocumentCache(document: document)
+            await documentCacheByName[document.displayName] = cache
+            return cache
+        }
+    }
+    
+    private func nameOrCurrentOrLastDocument<Request: ToolRequestWithDocument>(for request: Request) async -> (any HPDocument & NSDocument)? {
         if let documentName = request.documentName, let document = await NSDocumentController.shared.document(for: documentName) {
             return document
         } else if let document = await NSDocumentController.shared.currentDocumentOrLastDocument {
@@ -211,22 +268,28 @@ public actor HopperService: HelperService {
 }
 
 extension NSDocumentController {
-    func document(for name: String) -> (any HPDocument)? {
+    func document(for name: String) -> (any HPDocument & NSDocument)? {
         for document in documents {
-            if document.displayName == name, let document = document as? HPDocument {
+            if document.displayName == name, let document = document as? (any HPDocument & NSDocument) {
                 return document
             }
         }
         return nil
     }
 
-    var currentDocumentOrLastDocument: (any HPDocument)? {
-        (currentDocument ?? documents.last) as? HPDocument
+    var currentDocumentOrLastDocument: (any HPDocument & NSDocument)? {
+        (currentDocument ?? documents.last) as? (any HPDocument & NSDocument)
     }
 }
 
 extension Int {
     var asAddress: Address {
         Address(self)
+    }
+}
+
+extension String {
+    var asAddress: Address? {
+        Int(self, radix: 16)?.asAddress
     }
 }

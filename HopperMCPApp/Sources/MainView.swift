@@ -11,6 +11,12 @@ import SwiftUI
 struct MainView: View {
     var viewModel: MainViewModel = .init()
 
+    @State
+    var error: String?
+
+    @State
+    var isPresentedError: Bool = false
+
     var body: some View {
         Image(nsImage: NSApplication.shared.applicationIconImage)
             .resizable()
@@ -29,12 +35,23 @@ struct MainView: View {
                                 try await viewModel.installHelper()
                             } catch {
                                 print(error)
+                                self.error = "\(error)"
+                                self.isPresentedError = true
                             }
                         }
                     } label: {
-                        Text("Install")
+                        if viewModel.isHelperConnected {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                                .font(.title2)
+                        } else {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .foregroundColor(.blue)
+                                .font(.title2)
+                        }
                     }
                 }
+                .buttonStyle(PlainButtonStyle())
 
                 HStack {
                     Text("Install Hopper Plugin")
@@ -42,26 +59,36 @@ struct MainView: View {
                     Spacer()
 
                     Button {
-                        Task {
-                            try await viewModel.installPlugin()
-                        }
+                        viewModel.revealPluginDirectoryInFinder()
                     } label: {
-                        Text("Install")
+                        Image(systemName: "magnifyingglass.circle")
+                            .foregroundColor(.gray)
+                            .font(.title2)
                     }
-                }
-
-                HStack {
-                    Text("Inject Hopper App")
-
-                    Spacer()
+                    .buttonStyle(PlainButtonStyle())
 
                     Button {
                         Task {
-                            try await viewModel.injectHopper()
+                            do {
+                                try await viewModel.installPlugin()
+                            } catch {
+                                print(error)
+                                self.error = "\(error)"
+                                self.isPresentedError = true
+                            }
                         }
                     } label: {
-                        Text("Inject")
+                        if viewModel.isPluginInstalled {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                                .font(.title2)
+                        } else {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .foregroundColor(.blue)
+                                .font(.title2)
+                        }
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
 
                 HStack {
@@ -76,13 +103,21 @@ struct MainView: View {
                             pasteboard.setString(mcpServerPath, forType: .string)
                         }
                     } label: {
-                        Text("Copy")
+                        Image(systemName: "document.on.document.fill")
+                            .foregroundColor(.blue)
+                            .font(.title2)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
         .formStyle(.grouped)
-//        .frame(minWidth: 400)
+        .alert("Error", isPresented: $isPresentedError, presenting: error) { _ in
+            Text("OK")
+        } message: { error in
+            Text("\(error)")
+        }
+        .frame(minWidth: 300)
     }
 }
 
