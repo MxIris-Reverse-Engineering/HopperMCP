@@ -111,4 +111,22 @@ final class MainViewModel {
     public func revealPluginDirectoryInFinder() {
         NSWorkspace.shared.activateFileViewerSelecting([Self.pluginSearchURL])
     }
+    
+    private var mcpServerJSON: String {
+        """
+        {
+          "mcpServers": {
+            "Hopper": {
+              "command": "\(mcpServerURL?.path ?? "")"
+            }
+          }
+        }
+        """
+    }
+    
+    public func copyMCPServerJSON() {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(mcpServerJSON, forType: .string)
+    }
 }

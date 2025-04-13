@@ -2,6 +2,17 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
+
+extension Package.Dependency {
+    static func package(path: String, alternative: Package.Dependency) -> Package.Dependency {
+        if FileManager.default.fileExists(atPath: path) {
+            return .package(path: path)
+        } else {
+            return alternative
+        }
+    }
+}
 
 let package = Package(
     name: "HopperMCP",
@@ -17,7 +28,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../../../Library/macOS/swift-helper-service"),
+        .package(path: "../../../Library/macOS/swift-helper-service", alternative: .package(url: "https://github.com/Mx-Iris/swift-helper-service", branch: "main")),
         .package(url: "https://github.com/ajevans99/swift-json-schema", from: "0.3.2"),
         .package(url: "https://github.com/MxIris-Library-Forks/mcp-swift-sdk", branch: "main"),
         .package(url: "https://github.com/gohanlon/swift-memberwise-init-macro", from: "0.5.2"),

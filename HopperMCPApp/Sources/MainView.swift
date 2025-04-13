@@ -92,16 +92,12 @@ struct MainView: View {
                 }
 
                 HStack {
-                    Text("Copy MCP Server Path")
+                    Text("Copy MCP Server JSON")
 
                     Spacer()
 
                     Button {
-                        if let mcpServerPath = viewModel.mcpServerURL?.path {
-                            let pasteboard = NSPasteboard.general
-                            pasteboard.clearContents()
-                            pasteboard.setString(mcpServerPath, forType: .string)
-                        }
+                        viewModel.copyMCPServerJSON()
                     } label: {
                         Image(systemName: "document.on.document.fill")
                             .foregroundColor(.blue)
